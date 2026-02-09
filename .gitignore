@@ -14,6 +14,7 @@ logs/
 
 # 配置文件（真实的 Cookie）
 config/cookies.json
+config/cookies.txt
 
 # IDE
 .vscode/

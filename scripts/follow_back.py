@@ -14,9 +14,10 @@ from pathlib import Path
 
 
 class JuejinFollowBot:
-    def __init__(self, cookies_dict):
+    def __init__(self, cookies_str):
         self.session = requests.Session()
-        self.cookies = cookies_dict
+        # 将 Cookie 字符串转换为字典
+        self.cookies = self._parse_cookies(cookies_str)
         self.base_url = "https://api.juejin.cn"
         self.headers = {
             'accept': '*/*',
@@ -26,6 +27,16 @@ class JuejinFollowBot:
             'referer': 'https://juejin.cn/',
             'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
         }
+    
+    def _parse_cookies(self, cookies_str):
+        """将 Cookie 字符串解析为字典"""
+        cookies_dict = {}
+        for item in cookies_str.split(';'):
+            item = item.strip()
+            if '=' in item:
+                key, value = item.split('=', 1)
+                cookies_dict[key.strip()] = value.strip()
+        return cookies_dict
         
     def get_followers(self, cursor="0", limit=20):
         """获取关注我的用户列表"""
@@ -162,21 +173,15 @@ class JuejinFollowBot:
 
 
 def main():
-    # 从环境变量读取 Cookie
-    cookies_json = os.getenv('JUEJIN_COOKIES')
+    # 从环境变量读取 Cookie 字符串
+    cookies_str = os.getenv('JUEJIN_COOKIES')
     
-    if not cookies_json:
+    if not cookies_str:
         print("❌ 未找到 JUEJIN_COOKIES 环境变量")
         print("请在 GitHub Secrets 中配置 JUEJIN_COOKIES")
         return
     
-    try:
-        cookies_dict = json.loads(cookies_json)
-    except json.JSONDecodeError:
-        print("❌ Cookie 格式错误，请检查 JSON 格式")
-        return
-    
-    bot = JuejinFollowBot(cookies_dict)
+    bot = JuejinFollowBot(cookies_str)
     bot.process_follow_back()
 
 

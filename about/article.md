@@ -132,19 +132,17 @@ jobs:
 
 Cookie 是敏感信息，不能直接写在代码里。GitHub Secrets 完美解决了这个问题：
 
-1. 从浏览器复制掘金的 Cookie
-2. 转换成 JSON 格式
-3. 在仓库的 Settings → Secrets 中添加 `JUEJIN_COOKIES`
+1. 从浏览器复制掘金的 Cookie（完整字符串）
+2. 在仓库的 Settings → Secrets 中添加 `JUEJIN_COOKIES`
+3. **直接粘贴，无需转换格式！**
 
 格式示例：
 
-```json
-{
-  "sessionid": "your_sessionid_here",
-  "sid_guard": "your_sid_guard_here",
-  "uid_tt": "your_uid_tt_here"
-}
 ```
+sessionid=xxx; sid_guard=xxx; uid_tt=xxx; ...
+```
+
+就是这么简单，从浏览器复制什么，就粘贴什么！
 
 ## 实际效果
 

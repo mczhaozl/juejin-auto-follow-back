@@ -22,8 +22,7 @@
 2. 按 F12 打开开发者工具
 3. 切换到 Network（网络）标签
 4. 刷新页面，找到任意请求
-5. 在请求头中找到 Cookie，复制完整内容
-6. 将 Cookie 转换为 JSON 格式（参考 `config/cookies.example.json`）
+5. 在请求头中找到 Cookie，**直接复制完整内容**（一长串字符串）
 
 ### 3. 配置 GitHub Secrets
 
@@ -31,7 +30,7 @@
 2. 点击 Settings → Secrets and variables → Actions
 3. 点击 New repository secret
 4. Name 填写：`JUEJIN_COOKIES`
-5. Value 填写：你的 Cookie JSON 内容
+5. Value 填写：**直接粘贴你复制的 Cookie 字符串**
 6. 点击 Add secret
 
 ### 4. 启用 GitHub Actions
@@ -40,17 +39,15 @@
 2. 点击 "I understand my workflows, go ahead and enable them"
 3. 等待下一个整点自动执行，或点击 "Run workflow" 手动触发
 
-## 📋 Cookie JSON 格式示例
+## 📋 Cookie 格式示例
 
-```json
-{
-  "__tea_cookie_tokens_2608": "your_token_here",
-  "passport_csrf_token": "your_csrf_token_here",
-  "sessionid": "your_sessionid_here",
-  "sid_guard": "your_sid_guard_here",
-  "uid_tt": "your_uid_tt_here"
-}
+直接粘贴浏览器复制的 Cookie 字符串即可，格式如下：
+
 ```
+__tea_cookie_tokens_2608=xxx; passport_csrf_token=xxx; sessionid=xxx; sid_guard=xxx; uid_tt=xxx; ...
+```
+
+**无需转换格式，直接复制粘贴！**
 
 ## 📊 执行日志
 
@@ -87,8 +84,8 @@ time.sleep(2)  # 每次关注后延时2秒，可根据需要调整
 # 安装依赖
 pip install requests
 
-# 设置环境变量（替换为你的 Cookie JSON）
-export JUEJIN_COOKIES='{"sessionid":"your_sessionid",...}'
+# 设置环境变量（直接粘贴你的 Cookie 字符串）
+export JUEJIN_COOKIES='sessionid=xxx; sid_guard=xxx; uid_tt=xxx; ...'
 
 # 运行脚本
 python scripts/follow_back.py

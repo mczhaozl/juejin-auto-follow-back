@@ -1,0 +1,13 @@
+# 掘金 Cookie 示例
+# 直接从浏览器复制粘贴即可，无需转换格式
+
+__tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227586574305263552043%2522%257D; passport_csrf_token=your_csrf_token; sessionid=your_sessionid; sid_guard=your_sid_guard; uid_tt=your_uid_tt; uid_tt_ss=your_uid_tt_ss; sid_tt=your_sid_tt; sessionid_ss=your_sessionid_ss; sid_ucp_v1=your_sid_ucp_v1; ssid_ucp_v1=your_ssid_ucp_v1; csrf_session_id=your_csrf_session_id
+
+# 获取方式：
+# 1. 打开 https://juejin.cn 并登录
+# 2. 按 F12 打开开发者工具
+# 3. 切换到 Network（网络）标签
+# 4. 刷新页面，点击任意请求
+# 5. 在请求头（Request Headers）中找到 Cookie
+# 6. 复制完整的 Cookie 值
+# 7. 粘贴到 GitHub Secrets 的 JUEJIN_COOKIES 中
