@@ -1,0 +1,29 @@
+name: 掘金每日签到
+
+on:
+  schedule:
+    # 每天早上 8 点执行（北京时间 UTC+8，所以是 0 点 UTC）
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: |
+          pip install requests
+
+      - name: 执行签到脚本
+        run: python scripts/daily_checkin.py
+        env:
+          JUEJIN_COOKIES: ${{ secrets.JUEJIN_COOKIES }}
