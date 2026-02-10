@@ -41,11 +41,16 @@ class JuejinFollowBot:
                 item = item.strip()
                 if '__tea_cookie_tokens_2608' in item:
                     value = item.split('=', 1)[1]
+                    # 需要解码两次（双重 URL 编码）
                     decoded = urllib.parse.unquote(value)
+                    decoded = urllib.parse.unquote(decoded)
                     tokens = json.loads(decoded)
-                    return tokens.get('web_id', '7586574305263552043')
-        except:
-            pass
+                    web_id = tokens.get('web_id')
+                    if web_id:
+                        print(f"[{self.account_name}] 成功提取 UUID: {web_id}")
+                        return web_id
+        except Exception as e:
+            print(f"[{self.account_name}] UUID 提取失败，使用默认值: {e}")
         return '7586574305263552043'
     
     def _parse_cookies(self, cookies_str):
