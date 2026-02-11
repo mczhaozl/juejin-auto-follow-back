@@ -15,6 +15,7 @@ class JuejinCheckIn:
     def __init__(self, cookies_str, account_name="主账号"):
         self.session = requests.Session()
         self.account_name = account_name
+        self.cookies_str = cookies_str  # 保留原始 Cookie 字符串
         self.cookies = self._parse_cookies(cookies_str)
         self.base_url = "https://api.juejin.cn"
         
@@ -27,7 +28,8 @@ class JuejinCheckIn:
             'content-type': 'application/json',
             'origin': 'https://juejin.cn',
             'referer': 'https://juejin.cn/',
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36',
+            'Cookie': cookies_str  # 直接使用原始 Cookie 字符串
         }
     
     def _extract_uuid(self, cookies_str):
@@ -70,30 +72,16 @@ class JuejinCheckIn:
         }
         
         try:
-            # 先发送 OPTIONS 预检请求（模拟浏览器行为）
-            print(f"[DEBUG] 发送 OPTIONS 预检请求...")
-            options_response = self.session.options(
-                url,
-                params=params,
-                headers=self.headers,
-                cookies=self.cookies,
-                timeout=10
-            )
-            print(f"[DEBUG] OPTIONS Status: {options_response.status_code}")
-            
-            # 然后发送 POST 请求
-            print(f"[DEBUG] 发送 POST 请求...")
+            # 使用 POST 请求，不传 cookies 参数（已在 headers 中）
             response = self.session.post(
                 url,
                 params=params,
                 headers=self.headers,
-                cookies=self.cookies,
-                json={},
+                data='{}',
                 timeout=10
             )
             
             print(f"[DEBUG] POST Status Code: {response.status_code}")
-            print(f"[DEBUG] POST Response Length: {len(response.text)}")
             print(f"[DEBUG] POST Response: {response.text[:500]}")
             
             response.raise_for_status()
@@ -126,7 +114,6 @@ class JuejinCheckIn:
                 url,
                 params=params,
                 headers=self.headers,
-                cookies=self.cookies,
                 timeout=10
             )
             response.raise_for_status()
