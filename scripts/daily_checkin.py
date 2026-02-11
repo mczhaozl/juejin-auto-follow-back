@@ -8,6 +8,8 @@
 import os
 import json
 import requests
+import time
+import random
 from datetime import datetime
 
 
@@ -64,15 +66,20 @@ class JuejinCheckIn:
     
     def check_in(self):
         """执行签到"""
+        # 写死 msToken 和 a_bogus（如果过期需要更新）
+        ms_token = 'IYhGRZKoGipxhcj4c5GKnhHWKPj1yqEjIvJ1EKmI_tRq6XFGXsmjd-V4MMRpuQ5i08uzFrRCnO57deSG40u1tWOTAfGemIF4-fUTCQfCpxD70EtBEKkdZUtQIbGB1wLD'
+        a_bogus = 'D7UdkOZVMsm1MX3rB7Dz9JSEqxu0YWRLgZENEkRC60on'
+        
         url = f"{self.base_url}/growth_api/v1/check_in"
         params = {
             'aid': '2608',
             'uuid': self.uuid,
-            'spider': '0'
+            'spider': '0',
+            'msToken': ms_token,
+            'a_bogus': a_bogus
         }
         
         try:
-            # 使用 POST 请求，不传 cookies 参数（已在 headers 中）
             response = self.session.post(
                 url,
                 params=params,
@@ -81,20 +88,16 @@ class JuejinCheckIn:
                 timeout=10
             )
             
-            print(f"[DEBUG] POST Status Code: {response.status_code}")
-            print(f"[DEBUG] POST Response: {response.text[:500]}")
-            
             response.raise_for_status()
             
             if not response.text or response.text.strip() == '':
-                print(f"❌ [{self.account_name}] API 返回空响应")
+                print(f"❌ [{self.account_name}] API 返回空响应 - Cookie 可能已过期")
                 return None
             
             result = response.json()
             return result
         except json.JSONDecodeError as e:
             print(f"❌ [{self.account_name}] JSON 解析失败: {e}")
-            print(f"Response text: {response.text[:500]}")
             return None
         except Exception as e:
             print(f"❌ [{self.account_name}] 签到失败: {e}")
@@ -102,11 +105,16 @@ class JuejinCheckIn:
     
     def get_current_point(self):
         """获取当前矿石数"""
+        ms_token = 'IYhGRZKoGipxhcj4c5GKnhHWKPj1yqEjIvJ1EKmI_tRq6XFGXsmjd-V4MMRpuQ5i08uzFrRCnO57deSG40u1tWOTAfGemIF4-fUTCQfCpxD70EtBEKkdZUtQIbGB1wLD'
+        a_bogus = 'D7UdkOZVMsm1MX3rB7Dz9JSEqxu0YWRLgZENEkRC60on'
+        
         url = f"{self.base_url}/growth_api/v1/get_cur_point"
         params = {
             'aid': '2608',
             'uuid': self.uuid,
-            'spider': '0'
+            'spider': '0',
+            'msToken': ms_token,
+            'a_bogus': a_bogus
         }
         
         try:
@@ -161,6 +169,11 @@ class JuejinCheckIn:
 
 
 def main():
+    # 随机延迟 0-180 秒（±3分钟），避免固定时间被检测
+    random_delay = random.randint(0, 180)
+    print(f"\n⏰ 随机延迟 {random_delay} 秒后开始签到...")
+    time.sleep(random_delay)
+    
     # 从环境变量读取 Cookie 字符串
     cookies_str = os.getenv('JUEJIN_COOKIES')
     cookies_account2 = os.getenv('JUEJIN_COOKIES_ACCOUNT2')
@@ -210,10 +223,10 @@ def main():
         else:
             total_stats['failed'] += 1
         
-        # 账号之间间隔一下
+        # 账号之间间隔一下，增加随机性
         if account_name != accounts[-1][0]:
-            import time
-            time.sleep(3)
+            account_delay = random.randint(2, 5)  # 2-5秒随机间隔
+            time.sleep(account_delay)
     
     # 打印总体统计
     print(f"\n{'='*60}")
