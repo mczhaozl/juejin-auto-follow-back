@@ -70,7 +70,19 @@ class JuejinCheckIn:
         }
         
         try:
-            # 尝试 POST 请求（带空 JSON body）
+            # 先发送 OPTIONS 预检请求（模拟浏览器行为）
+            print(f"[DEBUG] 发送 OPTIONS 预检请求...")
+            options_response = self.session.options(
+                url,
+                params=params,
+                headers=self.headers,
+                cookies=self.cookies,
+                timeout=10
+            )
+            print(f"[DEBUG] OPTIONS Status: {options_response.status_code}")
+            
+            # 然后发送 POST 请求
+            print(f"[DEBUG] 发送 POST 请求...")
             response = self.session.post(
                 url,
                 params=params,
@@ -80,9 +92,9 @@ class JuejinCheckIn:
                 timeout=10
             )
             
-            print(f"[DEBUG] Status Code: {response.status_code}")
-            print(f"[DEBUG] Response Text Length: {len(response.text)}")
-            print(f"[DEBUG] Response Text: {response.text[:1000]}")
+            print(f"[DEBUG] POST Status Code: {response.status_code}")
+            print(f"[DEBUG] POST Response Length: {len(response.text)}")
+            print(f"[DEBUG] POST Response: {response.text[:500]}")
             
             response.raise_for_status()
             
