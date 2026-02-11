@@ -70,14 +70,25 @@ class JuejinCheckIn:
         }
         
         try:
+            # 尝试 POST 请求（带空 JSON body）
             response = self.session.post(
                 url,
                 params=params,
                 headers=self.headers,
                 cookies=self.cookies,
+                json={},
                 timeout=10
             )
+            
+            print(f"[DEBUG] Status Code: {response.status_code}")
+            print(f"[DEBUG] Response Text Length: {len(response.text)}")
+            print(f"[DEBUG] Response Text: {response.text[:1000]}")
+            
             response.raise_for_status()
+            
+            if not response.text or response.text.strip() == '':
+                print(f"❌ [{self.account_name}] API 返回空响应")
+                return None
             
             result = response.json()
             return result
