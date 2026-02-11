@@ -16,6 +16,10 @@ class JuejinCheckIn:
         self.session = requests.Session()
         self.cookies = self._parse_cookies(cookies_str)
         self.base_url = "https://api.juejin.cn"
+        
+        # Extract UUID from cookies
+        self.uuid = self._extract_uuid(cookies_str)
+        
         self.headers = {
             'accept': '*/*',
             'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
@@ -24,6 +28,26 @@ class JuejinCheckIn:
             'referer': 'https://juejin.cn/',
             'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
         }
+    
+    def _extract_uuid(self, cookies_str):
+        """从 cookies 中提取 web_id 作为 uuid"""
+        try:
+            import urllib.parse
+            for item in cookies_str.split(';'):
+                item = item.strip()
+                if '__tea_cookie_tokens_2608' in item:
+                    value = item.split('=', 1)[1]
+                    # 需要解码两次（双重 URL 编码）
+                    decoded = urllib.parse.unquote(value)
+                    decoded = urllib.parse.unquote(decoded)
+                    tokens = json.loads(decoded)
+                    web_id = tokens.get('web_id')
+                    if web_id:
+                        print(f"成功提取 UUID: {web_id}")
+                        return web_id
+        except Exception as e:
+            print(f"UUID 提取失败，使用默认值: {e}")
+        return '7586574305263552043'
     
     def _parse_cookies(self, cookies_str):
         """将 Cookie 字符串解析为字典"""
@@ -40,7 +64,7 @@ class JuejinCheckIn:
         url = f"{self.base_url}/growth_api/v1/check_in"
         params = {
             'aid': '2608',
-            'uuid': '7586574305263552043',
+            'uuid': self.uuid,
             'spider': '0'
         }
         
@@ -53,8 +77,17 @@ class JuejinCheckIn:
                 timeout=10
             )
             response.raise_for_status()
+            
+            # Debug: print response content
+            print(f"Response status: {response.status_code}")
+            print(f"Response content: {response.text[:200]}")
+            
             result = response.json()
             return result
+        except json.JSONDecodeError as e:
+            print(f"❌ JSON 解析失败: {e}")
+            print(f"Response text: {response.text[:500]}")
+            return None
         except Exception as e:
             print(f"❌ 签到失败: {e}")
             return None
@@ -64,7 +97,7 @@ class JuejinCheckIn:
         url = f"{self.base_url}/growth_api/v1/get_cur_point"
         params = {
             'aid': '2608',
-            'uuid': '7586574305263552043',
+            'uuid': self.uuid,
             'spider': '0'
         }
         
