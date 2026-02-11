@@ -2,8 +2,9 @@ name: 掘金每日签到
 
 on:
   schedule:
-    # 每天早上 8 点执行（北京时间 UTC+8，所以是 0 点 UTC）
-    - cron: '0 0 * * *'
+    # 每天早上 8:02 执行（北京时间 UTC+8，增加 2 分钟偏移避免整点）
+    # GitHub Actions 的 cron 本身有几分钟的随机延迟
+    - cron: '2 0 * * *'
   workflow_dispatch: # 允许手动触发
 
 jobs:
@@ -27,3 +28,7 @@ jobs:
         run: python scripts/daily_checkin.py
         env:
           JUEJIN_COOKIES: ${{ secrets.JUEJIN_COOKIES }}
+          JUEJIN_COOKIES_ACCOUNT2: ${{ secrets.JUEJIN_COOKIES_ACCOUNT2 }}
+          JUEJIN_COOKIES_ACCOUNT3: ${{ secrets.JUEJIN_COOKIES_ACCOUNT3 }}
+          JUEJIN_COOKIES_ACCOUNT4: ${{ secrets.JUEJIN_COOKIES_ACCOUNT4 }}
+          JUEJIN_COOKIES_ACCOUNT5: ${{ secrets.JUEJIN_COOKIES_ACCOUNT5 }}

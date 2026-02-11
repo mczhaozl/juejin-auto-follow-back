@@ -169,10 +169,6 @@ class JuejinCheckIn:
 
 
 def main():
-    # 随机延迟 0-180 秒（±3分钟），避免固定时间被检测
-    random_delay = random.randint(0, 180)
-    print(f"\n⏰ 随机延迟 {random_delay} 秒后开始签到...")
-    time.sleep(random_delay)
     
     # 从环境变量读取 Cookie 字符串
     cookies_str = os.getenv('JUEJIN_COOKIES')
