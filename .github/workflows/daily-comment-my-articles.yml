@@ -1,0 +1,28 @@
+name: 每日大号文章评论区补评论（前10篇）
+
+on:
+  schedule:
+    # 每天早上 10:00 北京时间 = 2:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install requests
+
+      - name: 执行大号文章评论区补评论
+        run: python scripts/daily_comment_my_articles.py
+        env:
+          PYTHONUNBUFFERED: '1'
+          JUEJIN_COOKIES: ${{ secrets.JUEJIN_COOKIES }}
