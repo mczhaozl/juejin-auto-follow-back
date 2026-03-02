@@ -8,6 +8,7 @@
 
 import os
 import sys
+import time
 from pathlib import Path
 
 _repo_root = Path(__file__).resolve().parent.parent
@@ -24,6 +25,7 @@ from scripts.juejin_collect import (
 TARGET_COMMENT = "我已开启五倍返利系统,关注我 你将在两小时内收获五倍粉丝!"
 TOP_ARTICLES = 10
 COMMENT_LIST_LIMIT = 20
+COMMENT_INTERVAL_SEC = 30
 
 
 def article_has_target_comment(cookies_str: str, article_id: str) -> bool:
@@ -65,7 +67,8 @@ def run_daily_comment_my_articles():
         return
 
     print(f"📌 大号给自己的前 {TOP_ARTICLES} 篇文章补评论（目标文案已存在则跳过）")
-    print(f"   目标评论: 「{TARGET_COMMENT}」\n")
+    print(f"   目标评论: 「{TARGET_COMMENT}」")
+    print(f"   每次发布评论间隔 {COMMENT_INTERVAL_SEC} 秒\n")
 
     published = 0
     skipped = 0
@@ -78,6 +81,8 @@ def run_daily_comment_my_articles():
             if comment_article(cookies, article_id, TARGET_COMMENT):
                 published += 1
                 print(f"  [{i}/{len(article_ids)}] ✅ 已发布评论 {article_id}")
+                if i < len(article_ids):
+                    time.sleep(COMMENT_INTERVAL_SEC)
             else:
                 failed += 1
                 print(f"  [{i}/{len(article_ids)}] ❌ 发布失败 {article_id}")
