@@ -36,6 +36,13 @@ def _default_headers():
     }
 
 
+def _sanitize_cookie_header(cookies_str: str) -> str:
+    """去掉 Cookie 中的换行/首尾空白，避免 Invalid header value（如 GitHub Secrets 粘贴带换行）。"""
+    if not cookies_str:
+        return cookies_str or ""
+    return cookies_str.strip().replace("\n", "").replace("\r", "")
+
+
 def _extract_uuid(cookies_str: str) -> str:
     """从 Cookie 字符串中解析 web_id 作为 uuid。"""
     try:
@@ -87,6 +94,7 @@ def get_collections(cookies_str: str, article_id: str = ""):
     :param article_id: 可选，用于判断文章是否已在某收藏夹
     :return: {"data": [{"collection_id", "collection_name", ...}], ...} 或 None
     """
+    cookies_str = _sanitize_cookie_header(cookies_str)
     uuid = _extract_uuid(cookies_str)
     url = f"{BASE_URL}/interact_api/v2/collectionset/list"
     params = {"aid": AID, "uuid": uuid, "spider": SPIDER}
@@ -121,6 +129,7 @@ def add_article_to_collection(
     """
     if not collection_ids:
         collection_ids = [DEFAULT_FIRST_COLLECTION_ID]
+    cookies_str = _sanitize_cookie_header(cookies_str)
     uuid = _extract_uuid(cookies_str)
     url = f"{BASE_URL}/interact_api/v2/collectionset/add_article"
     params = {"aid": AID, "uuid": uuid, "spider": SPIDER}
