@@ -26,3 +26,4 @@ jobs:
         env:
           PYTHONUNBUFFERED: '1'
           JUEJIN_COOKIES: ${{ secrets.JUEJIN_COOKIES }}
+          JUEJIN_CSRF_TOKEN: ${{ secrets.JUEJIN_CSRF_TOKEN }}
