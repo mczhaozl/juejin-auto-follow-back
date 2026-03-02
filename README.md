@@ -42,6 +42,7 @@
 4. Name 填写：`JUEJIN_COOKIES`
 5. Value 填写：**直接粘贴你复制的 Cookie 字符串**
 6. 点击 Add secret
+1. https://github.com/mczhaozl/juejin-auto-follow-back/settings/secrets/actions
 
 ### 4. 启用 GitHub Actions
 
