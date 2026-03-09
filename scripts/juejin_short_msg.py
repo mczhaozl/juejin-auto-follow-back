@@ -11,6 +11,7 @@
 from typing import Any, List, Optional
 
 import os
+import urllib.parse
 import requests
 
 from scripts.juejin_collect import (
@@ -172,9 +173,15 @@ def comment_short_msg(
     ms_token = (os.getenv("JUEJIN_MS_TOKEN") or "").strip()
     a_bogus = (os.getenv("JUEJIN_A_BOGUS") or "").strip()
     if ms_token:
-        params["msToken"] = ms_token
+        try:
+            params["msToken"] = urllib.parse.unquote(ms_token)
+        except Exception:
+            params["msToken"] = ms_token
     if a_bogus:
-        params["a_bogus"] = a_bogus
+        try:
+            params["a_bogus"] = urllib.parse.unquote(a_bogus)
+        except Exception:
+            params["a_bogus"] = a_bogus
     payload = {
         "client_type": 2608,
         "item_id": msg_id,
@@ -197,7 +204,10 @@ def comment_short_msg(
         resp.raise_for_status()
         text = (resp.text or "").strip()
         if not text:
-            print(f"❌ 评论沸点失败 {msg_id}: 接口返回空（Cookie 可能过期或风控）")
+            has_csrf = "是" if csrf else "否"
+            has_ms = "是" if ms_token else "否"
+            has_ab = "是" if a_bogus else "否"
+            print(f"❌ 评论沸点失败 {msg_id}: 接口返回空 | 已带 CSRF: {has_csrf}, msToken: {has_ms}, a_bogus: {has_ab}（若均为是仍失败，多半为 msToken/a_bogus 已过期，请从浏览器评论请求 URL 重新复制）")
             return False
         try:
             data = resp.json()

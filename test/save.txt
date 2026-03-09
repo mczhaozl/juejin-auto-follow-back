@@ -1,0 +1,428 @@
+
+
+获取 沸点 
+
+curl 'https://api.juejin.cn/recommend_api/v1/short_msg/recommend?aid=2608&uuid=7586574305263552043&spider=0' \
+  -H 'accept: */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -b '__tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227586574305263552043%2522%252C%2522user_unique_id%2522%253A%25227586574305263552043%2522%252C%2522timestamp%2522%253A1766386989417%257D; passport_csrf_token=7abc35ca23159a09cda3ab0c856e7dfe; passport_csrf_token_default=7abc35ca23159a09cda3ab0c856e7dfe; is_staff_user=false; _ga=GA1.2.424229928.1769653318; odin_tt=5c9e3665490e61ab3446a89259d23cce802d2ee0510682a4a98d1d8ffff89069d6da0b4eb6ce0468e694e528fa6ab404347f933fa0c2265e7147904fe4e904d4; n_mh=ykUY51NBxbyNPC_Ra6RxslXK8VADvKHUr1Yf-FwjIfM; sid_guard=116c2d1999eb35913fcdbcfa8fad2c1e%7C1770347973%7C31536000%7CSat%2C+06-Feb-2027+03%3A19%3A33+GMT; uid_tt=ee8fc3d7e08f3ce4a0ed7e271ad72449; uid_tt_ss=ee8fc3d7e08f3ce4a0ed7e271ad72449; sid_tt=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid_ss=116c2d1999eb35913fcdbcfa8fad2c1e; sid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; ssid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; session_tlb_tag=sttt%7C9%7CEWwtGZnrNZE_zbz6j60sHv________-kDSi_SMSymz2axsQXOKWna4YsfV20LXjvGrGtHSVbHhc%3D; _ga_S695FMNGPJ=GS2.2.s1770347939$o2$g1$t1770347974$j25$l0$h0; _tea_utm_cache_2608={%22utm_source%22:%22jj_nav%22}; _tea_utm_cache_576092=undefined; csrf_session_id=90a2c045efe817984cb9f364dbbbcd7f' \
+  -H 'ingress-traffic-env: test-eco-8' \
+  -H 'origin: https://juejin.cn' \
+  -H 'pragma: no-cache' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://juejin.cn/' \
+  -H 'sec-ch-ua: "Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'traffic-env: test-eco-10' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36' \
+  -H 'x-secsdk-csrf-token: 0001000000014c312125050dbdd0f5388dca54a1626b7e6f0efc3256251ff3f285bb25a2801f1898e4c3a7dcdd6f' \
+  --data-raw '{"id_type":4,"sort_type":300,"cursor":"0","limit":20}'
+
+  data[].msg_id=7611898858924097551
+
+点赞他人掘金沸点
+
+curl 'https://api.juejin.cn/interact_api/v1/digg/save?aid=2608&uuid=7586574305263552043&spider=0&verifyFp=verify_a160144b17f98b38388d6dbe3cae35fc&fp=verify_a160144b17f98b38388d6dbe3cae35fc&msToken=q2msHM3cPuDUS1vCoXZPr9FBt9PrES1f_-nmg916BbKYJrawC97EQ2frrYBq880Leg0YfcOdb1KVkC9HMoRNZD2oza7tw_3no3aibZMHdtibJpM8YmsqsNvRKnrnyDzBJg%3D%3D&a_bogus=d6BDDOgyMsm1gatV0XDz9tggCQy0YWRygZEP4Enbf0wV' \
+  -H 'accept: */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -b '__tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227586574305263552043%2522%252C%2522user_unique_id%2522%253A%25227586574305263552043%2522%252C%2522timestamp%2522%253A1766386989417%257D; passport_csrf_token=7abc35ca23159a09cda3ab0c856e7dfe; passport_csrf_token_default=7abc35ca23159a09cda3ab0c856e7dfe; is_staff_user=false; _ga=GA1.2.424229928.1769653318; odin_tt=5c9e3665490e61ab3446a89259d23cce802d2ee0510682a4a98d1d8ffff89069d6da0b4eb6ce0468e694e528fa6ab404347f933fa0c2265e7147904fe4e904d4; n_mh=ykUY51NBxbyNPC_Ra6RxslXK8VADvKHUr1Yf-FwjIfM; sid_guard=116c2d1999eb35913fcdbcfa8fad2c1e%7C1770347973%7C31536000%7CSat%2C+06-Feb-2027+03%3A19%3A33+GMT; uid_tt=ee8fc3d7e08f3ce4a0ed7e271ad72449; uid_tt_ss=ee8fc3d7e08f3ce4a0ed7e271ad72449; sid_tt=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid_ss=116c2d1999eb35913fcdbcfa8fad2c1e; sid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; ssid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; session_tlb_tag=sttt%7C9%7CEWwtGZnrNZE_zbz6j60sHv________-kDSi_SMSymz2axsQXOKWna4YsfV20LXjvGrGtHSVbHhc%3D; _ga_S695FMNGPJ=GS2.2.s1770347939$o2$g1$t1770347974$j25$l0$h0; _tea_utm_cache_2608={%22utm_source%22:%22jj_nav%22}; _tea_utm_cache_576092=undefined; csrf_session_id=90a2c045efe817984cb9f364dbbbcd7f' \
+  -H 'ingress-traffic-env: test-eco-8' \
+  -H 'origin: https://juejin.cn' \
+  -H 'pragma: no-cache' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://juejin.cn/' \
+  -H 'sec-ch-ua: "Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'traffic-env: test-eco-10' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36' \
+  -H 'x-secsdk-csrf-token: 000100000001a7b32ae7a2e2a7d5611f985656c8418ebefb9777429ebc43bd05c8ced739fd9c1898e4a917d5dfdf' \
+  --data-raw '{"item_id":"7611898858924097551","item_type":4,"client_type":2608}'
+
+
+
+  评论他人沸点
+
+  curl 'https://api.juejin.cn/interact_api/v1/comment/publish?aid=2608&uuid=7586574305263552043&spider=0&msToken=Zox3oolgaGznRIFHQxrtga5TDuZghRXGZG4a8W7k-8A8i_6CK7pK7ZXiUWwtWOGTtdF9by2-oF5tJrhSv26g_7bUu3WNtNcTEltkmS2dy0PQn8onI5SoaaXuBrfD4JBXIA%3D%3D&a_bogus=DJBdvcgyMsm1uYfID7Dz99dKRKY0YW4tgZEN4NPedULh' \
+  -H 'accept: */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -b '__tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227586574305263552043%2522%252C%2522user_unique_id%2522%253A%25227586574305263552043%2522%252C%2522timestamp%2522%253A1766386989417%257D; passport_csrf_token=7abc35ca23159a09cda3ab0c856e7dfe; passport_csrf_token_default=7abc35ca23159a09cda3ab0c856e7dfe; is_staff_user=false; _ga=GA1.2.424229928.1769653318; odin_tt=5c9e3665490e61ab3446a89259d23cce802d2ee0510682a4a98d1d8ffff89069d6da0b4eb6ce0468e694e528fa6ab404347f933fa0c2265e7147904fe4e904d4; n_mh=ykUY51NBxbyNPC_Ra6RxslXK8VADvKHUr1Yf-FwjIfM; sid_guard=116c2d1999eb35913fcdbcfa8fad2c1e%7C1770347973%7C31536000%7CSat%2C+06-Feb-2027+03%3A19%3A33+GMT; uid_tt=ee8fc3d7e08f3ce4a0ed7e271ad72449; uid_tt_ss=ee8fc3d7e08f3ce4a0ed7e271ad72449; sid_tt=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid_ss=116c2d1999eb35913fcdbcfa8fad2c1e; sid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; ssid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; session_tlb_tag=sttt%7C9%7CEWwtGZnrNZE_zbz6j60sHv________-kDSi_SMSymz2axsQXOKWna4YsfV20LXjvGrGtHSVbHhc%3D; _ga_S695FMNGPJ=GS2.2.s1770347939$o2$g1$t1770347974$j25$l0$h0; _tea_utm_cache_2608={%22utm_source%22:%22jj_nav%22}; _tea_utm_cache_576092=undefined; csrf_session_id=90a2c045efe817984cb9f364dbbbcd7f' \
+  -H 'ingress-traffic-env: test-eco-8' \
+  -H 'origin: https://juejin.cn' \
+  -H 'pragma: no-cache' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://juejin.cn/' \
+  -H 'sec-ch-ua: "Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'traffic-env: test-eco-10' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36' \
+  -H 'x-secsdk-csrf-token: 0001000000010ad61e610239952ec5112e16aa1bb39e9b191a7f32cf655d2df1a2114a00faea1898e52da31dded0' \
+  --data-raw '{"client_type":2608,"item_id":"7611857436338110491","item_type":4,"comment_content":"混个活跃","comment_pics":[]}'
+
+
+
+获取文章评论
+
+curl 'https://api.juejin.cn/interact_api/v1/comment/list?aid=2608&uuid=7586574305263552043&spider=0&verifyFp=verify_a160144b17f98b38388d6dbe3cae35fc&fp=verify_a160144b17f98b38388d6dbe3cae35fc&msToken=WFoJDiIm29PRnLlD5vVEqoR8hsxHf4rY3Xbu5XuV-hh6q6uW-6wBI1oVGapyDVaCnujuln6qx_A0gbQ7GwBTn1lGBNjTv0ZTRU08-t2WGvzvr_sDFxUj2jTlarxjwk4kmA%3D%3D&a_bogus=Of-xvOgyMsm1IiyBkhDz9nWaX8u0YW-4gZEz4NHAPUop' \
+  -H 'accept: */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -b '__tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227586574305263552043%2522%252C%2522user_unique_id%2522%253A%25227586574305263552043%2522%252C%2522timestamp%2522%253A1766386989417%257D; passport_csrf_token=7abc35ca23159a09cda3ab0c856e7dfe; passport_csrf_token_default=7abc35ca23159a09cda3ab0c856e7dfe; is_staff_user=false; _ga=GA1.2.424229928.1769653318; odin_tt=5c9e3665490e61ab3446a89259d23cce802d2ee0510682a4a98d1d8ffff89069d6da0b4eb6ce0468e694e528fa6ab404347f933fa0c2265e7147904fe4e904d4; n_mh=ykUY51NBxbyNPC_Ra6RxslXK8VADvKHUr1Yf-FwjIfM; sid_guard=116c2d1999eb35913fcdbcfa8fad2c1e%7C1770347973%7C31536000%7CSat%2C+06-Feb-2027+03%3A19%3A33+GMT; uid_tt=ee8fc3d7e08f3ce4a0ed7e271ad72449; uid_tt_ss=ee8fc3d7e08f3ce4a0ed7e271ad72449; sid_tt=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid_ss=116c2d1999eb35913fcdbcfa8fad2c1e; sid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; ssid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; session_tlb_tag=sttt%7C9%7CEWwtGZnrNZE_zbz6j60sHv________-kDSi_SMSymz2axsQXOKWna4YsfV20LXjvGrGtHSVbHhc%3D; _ga_S695FMNGPJ=GS2.2.s1770347939$o2$g1$t1770347974$j25$l0$h0; _tea_utm_cache_2608={%22utm_source%22:%22jj_nav%22}; _tea_utm_cache_576092=undefined; csrf_session_id=90a2c045efe817984cb9f364dbbbcd7f' \
+  -H 'ingress-traffic-env: test-eco-8' \
+  -H 'origin: https://juejin.cn' \
+  -H 'pragma: no-cache' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://juejin.cn/' \
+  -H 'sec-ch-ua: "Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'traffic-env: test-eco-10' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36' \
+  -H 'x-secsdk-csrf-token: 0001000000014f40c494adee2fae45f468ed9a596e3d4db89dca817146165d2aeb09bfb529b81898e5b43c72301c' \
+  --data-raw '{"item_id":"7611843047397277738","item_type":2,"cursor":"0","limit":3,"sort":0,"client_type":2608}'
+
+  {
+    "err_no": 0,
+    "err_msg": "success",
+    "data": [
+        {
+            "comment_id": "7612478869783003938",
+            "comment_info": {
+                "comment_id": "7612478869783003938",
+                "user_id": "994385683293918",
+                "item_id": "7611843047397277738",
+                "item_type": 2,
+                "comment_content": "我已开启五倍返利系统,关注我 你将在两小时内收获五倍粉丝!",
+                "comment_pics": [],
+                "comment_status": 1,
+                "ctime": 1772418968,
+                "comment_replys": [],
+                "digg_count": 0,
+                "bury_count": 0,
+                "reply_count": 0,
+                "is_digg": false,
+                "is_bury": false,
+                "level": 0,
+                "bot_id": null,
+                "is_mention": false
+            },
+            "user_info": {
+                "user_id": "994385683293918",
+                "user_name": "兆子龙",
+                "company": "",
+                "job_title": "",
+                "avatar_large": "https://p9-passport.byteacctimg.com/img/user-avatar/0ab0057eb8c96e5c8226dcfa4165d5eb~300x300.image",
+                "level": 0,
+                "description": "",
+                "followee_count": 0,
+                "follower_count": 0,
+                "post_article_count": 0,
+                "digg_article_count": 0,
+                "got_digg_count": 0,
+                "got_view_count": 0,
+                "post_shortmsg_count": 0,
+                "digg_shortmsg_count": 0,
+                "isfollowed": false,
+                "favorable_author": 0,
+                "power": 0,
+                "study_point": 0,
+                "university": {
+                    "university_id": "0",
+                    "name": "",
+                    "logo": ""
+                },
+                "major": {
+                    "major_id": "0",
+                    "parent_id": "0",
+                    "name": ""
+                },
+                "student_status": 0,
+                "select_event_count": 0,
+                "select_online_course_count": 0,
+                "identity": 0,
+                "is_select_annual": false,
+                "select_annual_rank": 0,
+                "annual_list_type": 0,
+                "extraMap": {},
+                "is_logout": 0,
+                "annual_info": [],
+                "account_amount": 0,
+                "user_growth_info": {
+                    "user_id": 0,
+                    "jpower": 0,
+                    "jscore": 0,
+                    "jpower_level": 0,
+                    "jscore_level": 0,
+                    "jscore_title": "",
+                    "author_achievement_list": [],
+                    "vip_level": 0,
+                    "vip_title": "",
+                    "jscore_next_level_score": 0,
+                    "jscore_this_level_mini_score": 0,
+                    "vip_score": 0
+                },
+                "is_vip": false,
+                "become_author_days": 0,
+                "collection_set_article_count": 0,
+                "recommend_article_count_daily": 0,
+                "article_collect_count_daily": 0,
+                "user_priv_info": {
+                    "administrator": 0,
+                    "builder": 0,
+                    "favorable_author": 0,
+                    "book_author": 0,
+                    "forbidden_words": 0,
+                    "can_tag_cnt": 0,
+                    "auto_recommend": 0,
+                    "signed_author": 0,
+                    "popular_author": 0,
+                    "can_add_video": 0
+                }
+            },
+            "user_interact": {
+                "id": 7611843047397278000,
+                "omitempty": 2,
+                "user_id": 994385683293918,
+                "is_digg": false,
+                "is_follow": false,
+                "is_collect": false,
+                "collect_set_count": 0
+            },
+            "reply_infos": [],
+            "is_author": true,
+            "root_item": {
+                "item_id": "",
+                "item_type": 0,
+                "title": "",
+                "parent_id": ""
+            },
+            "is_hot": false,
+            "bot_info": null,
+            "mentions": null
+        }
+    ],
+    "cursor": "1",
+    "count": 1,
+    "has_more": false
+}
+
+
+评论文章
+
+curl 'https://api.juejin.cn/interact_api/v1/comment/publish?aid=2608&uuid=7586574305263552043&spider=0&msToken=isApjTIJHLhDV9Yy_xT2-SwO48iW-8O7a5Uc6AI9CXN3C7OXN8R2AYSyXJ78-aaRUHkpypLbA1nIM3UVzhEYk5B9ptB_0R1FrYVgvMk1aMrKqyfA1oCh7VrcYF1BGKm4&a_bogus=m6sODcgyMsm1wxuIkhDz9blIRER0YWRFgZEN4Ny31tLX' \
+  -H 'accept: */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -b '__tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227586574305263552043%2522%252C%2522user_unique_id%2522%253A%25227586574305263552043%2522%252C%2522timestamp%2522%253A1766386989417%257D; passport_csrf_token=7abc35ca23159a09cda3ab0c856e7dfe; passport_csrf_token_default=7abc35ca23159a09cda3ab0c856e7dfe; is_staff_user=false; _ga=GA1.2.424229928.1769653318; odin_tt=5c9e3665490e61ab3446a89259d23cce802d2ee0510682a4a98d1d8ffff89069d6da0b4eb6ce0468e694e528fa6ab404347f933fa0c2265e7147904fe4e904d4; n_mh=ykUY51NBxbyNPC_Ra6RxslXK8VADvKHUr1Yf-FwjIfM; sid_guard=116c2d1999eb35913fcdbcfa8fad2c1e%7C1770347973%7C31536000%7CSat%2C+06-Feb-2027+03%3A19%3A33+GMT; uid_tt=ee8fc3d7e08f3ce4a0ed7e271ad72449; uid_tt_ss=ee8fc3d7e08f3ce4a0ed7e271ad72449; sid_tt=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid_ss=116c2d1999eb35913fcdbcfa8fad2c1e; sid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; ssid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; session_tlb_tag=sttt%7C9%7CEWwtGZnrNZE_zbz6j60sHv________-kDSi_SMSymz2axsQXOKWna4YsfV20LXjvGrGtHSVbHhc%3D; _ga_S695FMNGPJ=GS2.2.s1770347939$o2$g1$t1770347974$j25$l0$h0; _tea_utm_cache_2608={%22utm_source%22:%22jj_nav%22}; _tea_utm_cache_576092=undefined; csrf_session_id=90a2c045efe817984cb9f364dbbbcd7f' \
+  -H 'ingress-traffic-env: test-eco-8' \
+  -H 'origin: https://juejin.cn' \
+  -H 'pragma: no-cache' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://juejin.cn/' \
+  -H 'sec-ch-ua: "Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'traffic-env: test-eco-10' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36' \
+  -H 'x-secsdk-csrf-token: 0001000000015e4a863a8d1001ea2a3877981fd7775ffd4704abd1cc102fd7dc01808563aa7e1898e5a2039f9800' \
+  --data-raw $'{"client_type":2608,"item_id":"7611843047397277738","item_type":2,"comment_content":"我已开启五倍返利系统,关注我 你将在两小时内收获五倍粉丝\u0021","comment_pics":[]}'
+
+
+
+  1, 每天评论前面10条改成
+
+  固定评论这个
+  curl 'https://api.juejin.cn/interact_api/v1/comment/publish?aid=2608&uuid=7586574305263552043&spider=0&msToken=x-hoXQKcRHIgCSRcSFAAzIRwNywSDWRuvJwqkYzXjA8sbJ_FUmMKOLbe6dGChoLhmf_YXUi7CbiVzmH_XxZrYqfDWqHSdhsdo-P_5Hgo7AVh7yoC_vUeW05KAatO1ebgDA%3D%3D&a_bogus=Qj-YfOgyMsm1TGuIe7Dz9r6ARu60YW4lgZEN4u-fBzqF' \
+  -H 'accept: */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -b '__tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227586574305263552043%2522%252C%2522user_unique_id%2522%253A%25227586574305263552043%2522%252C%2522timestamp%2522%253A1766386989417%257D; passport_csrf_token=7abc35ca23159a09cda3ab0c856e7dfe; passport_csrf_token_default=7abc35ca23159a09cda3ab0c856e7dfe; is_staff_user=false; _ga=GA1.2.424229928.1769653318; odin_tt=5c9e3665490e61ab3446a89259d23cce802d2ee0510682a4a98d1d8ffff89069d6da0b4eb6ce0468e694e528fa6ab404347f933fa0c2265e7147904fe4e904d4; n_mh=ykUY51NBxbyNPC_Ra6RxslXK8VADvKHUr1Yf-FwjIfM; sid_guard=116c2d1999eb35913fcdbcfa8fad2c1e%7C1770347973%7C31536000%7CSat%2C+06-Feb-2027+03%3A19%3A33+GMT; uid_tt=ee8fc3d7e08f3ce4a0ed7e271ad72449; uid_tt_ss=ee8fc3d7e08f3ce4a0ed7e271ad72449; sid_tt=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid_ss=116c2d1999eb35913fcdbcfa8fad2c1e; sid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; ssid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; session_tlb_tag=sttt%7C9%7CEWwtGZnrNZE_zbz6j60sHv________-kDSi_SMSymz2axsQXOKWna4YsfV20LXjvGrGtHSVbHhc%3D; _ga_S695FMNGPJ=GS2.2.s1770347939$o2$g1$t1770347974$j25$l0$h0; _tea_utm_cache_2608={%22utm_source%22:%22jj_nav%22}; _tea_utm_cache_576092=undefined; csrf_session_id=90a2c045efe817984cb9f364dbbbcd7f' \
+  -H 'ingress-traffic-env: test-eco-8' \
+  -H 'origin: https://juejin.cn' \
+  -H 'pragma: no-cache' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://juejin.cn/' \
+  -H 'sec-ch-ua: "Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'traffic-env: test-eco-10' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36' \
+  -H 'x-secsdk-csrf-token: 000100000001e83be4c3102bb39fd7188db783157e4b15c643b25f254331c1bdc06bd45965121898e8d6ba668112' \
+  --data-raw '{"client_type":2608,"item_id":"7611068495070445577","item_type":2,"comment_content":"\n从贫血模型到 DDD：后端分层与领域建模实战","comment_pics":[]}'
+
+  除了cookie 其他全部写死
+
+  {
+    "err_no": 0,
+    "err_msg": "success",
+    "data": {
+        "comment_id": "7612494723202761508",
+        "comment_info": {
+            "comment_id": "7612494723202761508",
+            "user_id": "994385683293918",
+            "item_id": "7611068495070445577",
+            "item_type": 2,
+            "comment_content": "从贫血模型到 DDD：后端分层与领域建模实战",
+            "comment_pics": [],
+            "comment_status": 7,
+            "ctime": 1772422490,
+            "comment_replys": [],
+            "digg_count": 0,
+            "bury_count": 0,
+            "reply_count": 0,
+            "is_digg": false,
+            "is_bury": false,
+            "level": 0,
+            "bot_id": null,
+            "is_mention": false
+        },
+        "user_info": {
+            "user_id": "994385683293918",
+            "user_name": "兆子龙",
+            "company": "",
+            "job_title": "",
+            "avatar_large": "https://p9-passport.byteacctimg.com/img/user-avatar/0ab0057eb8c96e5c8226dcfa4165d5eb~300x300.image",
+            "level": 0,
+            "description": "",
+            "followee_count": 0,
+            "follower_count": 0,
+            "post_article_count": 0,
+            "digg_article_count": 0,
+            "got_digg_count": 0,
+            "got_view_count": 0,
+            "post_shortmsg_count": 0,
+            "digg_shortmsg_count": 0,
+            "isfollowed": false,
+            "favorable_author": 0,
+            "power": 0,
+            "study_point": 0,
+            "university": {
+                "university_id": "0",
+                "name": "",
+                "logo": ""
+            },
+            "major": {
+                "major_id": "0",
+                "parent_id": "0",
+                "name": ""
+            },
+            "student_status": 0,
+            "select_event_count": 0,
+            "select_online_course_count": 0,
+            "identity": 0,
+            "is_select_annual": false,
+            "select_annual_rank": 0,
+            "annual_list_type": 0,
+            "extraMap": {},
+            "is_logout": 0,
+            "annual_info": [],
+            "account_amount": 0,
+            "user_growth_info": {
+                "user_id": 0,
+                "jpower": 0,
+                "jscore": 0,
+                "jpower_level": 0,
+                "jscore_level": 0,
+                "jscore_title": "",
+                "author_achievement_list": null,
+                "vip_level": 0,
+                "vip_title": "",
+                "jscore_next_level_score": 0,
+                "jscore_this_level_mini_score": 0,
+                "vip_score": 0
+            },
+            "is_vip": false,
+            "become_author_days": 0,
+            "collection_set_article_count": 0,
+            "recommend_article_count_daily": 0,
+            "article_collect_count_daily": 0,
+            "user_priv_info": {
+                "administrator": 0,
+                "builder": 0,
+                "favorable_author": 0,
+                "book_author": 0,
+                "forbidden_words": 0,
+                "can_tag_cnt": 0,
+                "auto_recommend": 0,
+                "signed_author": 0,
+                "popular_author": 0,
+                "can_add_video": 0
+            }
+        },
+        "user_interact": {
+            "id": 7611068495070445577,
+            "omitempty": 2,
+            "user_id": 994385683293918,
+            "is_digg": false,
+            "is_follow": false,
+            "is_collect": false,
+            "collect_set_count": 0
+        },
+        "reply_infos": [],
+        "is_author": true,
+        "root_item": null,
+        "is_hot": false,
+        "bot_info": null,
+        "mentions": null
+    }
+}
+
+然后 再删除
+
+
+
+curl 'https://api.juejin.cn/interact_api/v1/comment/delete?aid=2608&uuid=7586574305263552043&spider=0' \
+  -H 'accept: */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -b '__tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227586574305263552043%2522%252C%2522user_unique_id%2522%253A%25227586574305263552043%2522%252C%2522timestamp%2522%253A1766386989417%257D; passport_csrf_token=7abc35ca23159a09cda3ab0c856e7dfe; passport_csrf_token_default=7abc35ca23159a09cda3ab0c856e7dfe; is_staff_user=false; _ga=GA1.2.424229928.1769653318; odin_tt=5c9e3665490e61ab3446a89259d23cce802d2ee0510682a4a98d1d8ffff89069d6da0b4eb6ce0468e694e528fa6ab404347f933fa0c2265e7147904fe4e904d4; n_mh=ykUY51NBxbyNPC_Ra6RxslXK8VADvKHUr1Yf-FwjIfM; sid_guard=116c2d1999eb35913fcdbcfa8fad2c1e%7C1770347973%7C31536000%7CSat%2C+06-Feb-2027+03%3A19%3A33+GMT; uid_tt=ee8fc3d7e08f3ce4a0ed7e271ad72449; uid_tt_ss=ee8fc3d7e08f3ce4a0ed7e271ad72449; sid_tt=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid=116c2d1999eb35913fcdbcfa8fad2c1e; sessionid_ss=116c2d1999eb35913fcdbcfa8fad2c1e; sid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; ssid_ucp_v1=1.0.0-KDUyMDA4NWY4MmNmZjI1ZDUyNjhhZGRkNjkzOTNlZTJlY2ViOWVhYTYKFgjezbCrt4ziARDFu5XMBhiwFDgIQAsaAmxmIiAxMTZjMmQxOTk5ZWIzNTkxM2ZjZGJjZmE4ZmFkMmMxZQ; session_tlb_tag=sttt%7C9%7CEWwtGZnrNZE_zbz6j60sHv________-kDSi_SMSymz2axsQXOKWna4YsfV20LXjvGrGtHSVbHhc%3D; _ga_S695FMNGPJ=GS2.2.s1770347939$o2$g1$t1770347974$j25$l0$h0; _tea_utm_cache_2608={%22utm_source%22:%22jj_nav%22}; _tea_utm_cache_576092=undefined; csrf_session_id=90a2c045efe817984cb9f364dbbbcd7f' \
+  -H 'ingress-traffic-env: test-eco-8' \
+  -H 'origin: https://juejin.cn' \
+  -H 'pragma: no-cache' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://juejin.cn/' \
+  -H 'sec-ch-ua: "Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'traffic-env: test-eco-10' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36' \
+  -H 'x-secsdk-csrf-token: 000100000001e83be4c3102bb39fd7188db783157e4b15c643b25f254331c1bdc06bd45965121898e8d6ba668112' \
+  --data-raw '{"comment_id":"7612494723202761508"}'
+
+
+
+  每天重复3次 每个API 间隔 1分钟
+  10.25 开始
