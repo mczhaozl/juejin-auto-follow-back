@@ -78,9 +78,11 @@ def publish_draft(
     cookies_str: str,
     draft_id: str,
     theme_ids: Optional[List[str]] = None,
+    column_ids: Optional[List[str]] = None,
 ) -> Optional[str]:
     """
     发布已创建的草稿。
+    :param column_ids: 专栏 id 列表，可选
     :return: article_id，失败返回 None
     """
     cookies_str = _sanitize_cookie_header(cookies_str)
@@ -90,7 +92,7 @@ def publish_draft(
     payload = {
         "draft_id": draft_id,
         "sync_to_org": False,
-        "column_ids": [],
+        "column_ids": column_ids or [],
         "theme_ids": theme_ids or [],
         "encrypted_word_count": 0,
         "origin_word_count": 0,
@@ -118,10 +120,12 @@ def publish_article(
     category_id: str,
     tag_ids: List[str],
     theme_ids: Optional[List[str]] = None,
+    column_ids: Optional[List[str]] = None,
     do_publish: bool = True,
 ) -> Tuple[Optional[str], Optional[str]]:
     """
     创建草稿并可选发布。
+    :param column_ids: 专栏 id 列表，可选
     :return: (article_id, None) 成功；(None, draft_id) 仅草稿；(None, None) 失败
     """
     draft_id = create_draft(
@@ -131,7 +135,7 @@ def publish_article(
         return None, None
     if not do_publish:
         return None, draft_id
-    article_id = publish_draft(cookies_str, draft_id, theme_ids)
+    article_id = publish_draft(cookies_str, draft_id, theme_ids=theme_ids, column_ids=column_ids)
     if article_id:
         return article_id, None
     return None, draft_id

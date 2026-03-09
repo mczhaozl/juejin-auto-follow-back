@@ -140,12 +140,32 @@ def run():
             print(f"  [{i}/{len(articles)}] ⚠️ {art_dir.name} 缺少 categoryId 或 tagIds，跳过")
             continue
 
-        theme_id = pick_theme_for_article(title, brief)
-        theme_ids = [theme_id] if theme_id else []
-        if theme_id:
+        # 优先使用 config 中的 themeIds；否则由话题专家根据标题/摘要匹配
+        config_theme = config.get("themeIds")
+        if config_theme is not None:
+            if isinstance(config_theme, list):
+                theme_ids = [str(t) for t in config_theme if t]
+            else:
+                theme_ids = [str(config_theme).strip()] if str(config_theme).strip() else []
+        else:
+            theme_id = pick_theme_for_article(title, brief)
+            theme_ids = [theme_id] if theme_id else []
+        # 专栏：config 中 columnIds（字符串或数组），发布时传入
+        config_column = config.get("columnIds")
+        if config_column is not None:
+            if isinstance(config_column, list):
+                column_ids = [str(c) for c in config_column if c]
+            else:
+                column_ids = [s.strip() for s in str(config_column).split(",") if s.strip()]
+        else:
+            column_ids = []
+
+        if theme_ids:
             print(f"  [{i}/{len(articles)}] 📄 {title[:40]}… | 话题: 已选")
         else:
             print(f"  [{i}/{len(articles)}] 📄 {title[:40]}… | 话题: 未选")
+        if column_ids:
+            print(f"  [{i}/{len(articles)}]    专栏: 已选 {len(column_ids)} 个")
 
         article_id, draft_id = publish_article(
             cookies,
@@ -155,6 +175,7 @@ def run():
             category_id=category_id,
             tag_ids=tag_ids,
             theme_ids=theme_ids,
+            column_ids=column_ids,
             do_publish=do_publish,
         )
         if article_id:
