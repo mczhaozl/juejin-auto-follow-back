@@ -2,8 +2,8 @@ name: 每日上传 databae 文档（大号）
 
 on:
   schedule:
-    # 每天 17:35 北京时间 = 09:35 UTC
-    - cron: '35 9 * * *'
+    # 每天 09:35 北京时间 = 01:35 UTC
+    - cron: '35 1 * * *'
   workflow_dispatch:
 
 jobs:
