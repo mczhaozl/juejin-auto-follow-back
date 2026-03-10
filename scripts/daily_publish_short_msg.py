@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-每日定时：用大号发一条沸点，内容为推荐列表第 6 条的内容 + "..."（方便后续删除）。
-- 每天 8:15、9:20 由 GitHub Actions 触发（见 .github/workflows/daily-publish-short-msg.yml）
+每日定时：用大号发一条沸点，内容为推荐列表第 6 条的内容 + 固定后缀（方便后续删除）。
+- 每天 8:15、9:20、10:30 由 GitHub Actions 触发（见 .github/workflows/daily-publish-short-msg.yml）
 """
 
 import os
@@ -16,7 +16,7 @@ if str(_repo_root) not in sys.path:
 from scripts.juejin_short_msg import get_recommend_short_msgs, publish_short_msg
 
 RECOMMEND_INDEX_FOR_CONTENT = 5  # 第 6 条（0-based）
-CONTENT_SUFFIX = "..."
+CONTENT_SUFFIX = ",另外有人互关注或者点赞文章吗,我已经开启了五倍返利系统,一起活跃一下呗..."
 
 
 def run_daily_publish_short_msg():
@@ -39,7 +39,7 @@ def run_daily_publish_short_msg():
         return
 
     content = raw_content + CONTENT_SUFFIX
-    print(f"📌 大号发沸点（内容来源：推荐第 6 条 + '{CONTENT_SUFFIX}'）")
+    print(f"📌 大号发沸点（内容来源：推荐第 6 条 + 固定后缀）")
     print(f"   内容预览: {content[:60]}...")
 
     if publish_short_msg(cookies, content):
