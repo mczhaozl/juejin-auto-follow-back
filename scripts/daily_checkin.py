@@ -178,6 +178,7 @@ def main():
     cookies_account5 = os.getenv('JUEJIN_COOKIES_ACCOUNT5')
     cookies_account6 = os.getenv('JUEJIN_COOKIES_ACCOUNT6')
     cookies_account7 = os.getenv('JUEJIN_COOKIES_ACCOUNT7')
+    cookies_account8 = os.getenv('JUEJIN_COOKIES_ACCOUNT8')
     
     if not cookies_str:
         print("❌ 未找到 JUEJIN_COOKIES 环境变量")
@@ -201,6 +202,8 @@ def main():
         accounts.append(("小号5", cookies_account6))
     if cookies_account7:
         accounts.append(("小号6", cookies_account7))
+    if cookies_account8:
+        accounts.append(("小号7", cookies_account8))
     
     print(f"\n🎯 多账号签到模式启动！共 {len(accounts)} 个账号")
     print(f"{'='*60}\n")

@@ -150,6 +150,7 @@ A: 不需要，普通注册的账号就可以使用。
 # 在 main() 函数中添加
 cookies_account6 = os.getenv('JUEJIN_COOKIES_ACCOUNT6')
 cookies_account7 = os.getenv('JUEJIN_COOKIES_ACCOUNT7')
+cookies_account8 = os.getenv('JUEJIN_COOKIES_ACCOUNT8')
 # ... 以此类推
 ```
 

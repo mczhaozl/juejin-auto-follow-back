@@ -33,6 +33,7 @@ jobs:
           JUEJIN_COOKIES_ACCOUNT5: ${{ secrets.JUEJIN_COOKIES_ACCOUNT5 }}
           JUEJIN_COOKIES_ACCOUNT6: ${{ secrets.JUEJIN_COOKIES_ACCOUNT6 }}
           JUEJIN_COOKIES_ACCOUNT7: ${{ secrets.JUEJIN_COOKIES_ACCOUNT7 }}
+          JUEJIN_COOKIES_ACCOUNT8: ${{ secrets.JUEJIN_COOKIES_ACCOUNT8 }}
 
       - name: 提交执行日志
         run: |
