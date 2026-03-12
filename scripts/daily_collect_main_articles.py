@@ -38,6 +38,8 @@ def gather_accounts():
             "JUEJIN_COOKIES_ACCOUNT3",
             "JUEJIN_COOKIES_ACCOUNT4",
             "JUEJIN_COOKIES_ACCOUNT5",
+            "JUEJIN_COOKIES_ACCOUNT6",
+            "JUEJIN_COOKIES_ACCOUNT7",
         ],
         start=1,
     ):

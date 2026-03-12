@@ -1,4 +1,4 @@
-name: 每日上传 databae 文档（大号）
+name: AI编写并上传文章（大号）
 
 on:
   schedule:

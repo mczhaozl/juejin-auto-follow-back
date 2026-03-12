@@ -5,13 +5,12 @@
 - 查询指定用户最近 N 篇文章（无需登录）
 - 获取当前账号收藏夹列表
 - 将文章加入收藏夹（默认使用第一个收藏夹）
-- 文章评论：获取评论列表、发表评论
 """
 
 import json
 import os
 import urllib.parse
-from typing import Any, List, Optional
+from typing import List, Optional
 
 import requests
 
@@ -203,116 +202,6 @@ def collect_article_if_not_in(
     if ret.get("err_no") == 0:
         return "collected"
     return "failed"
-
-
-def get_article_comment_list(
-    cookies_str: str,
-    item_id: str,
-    cursor: str = "0",
-    limit: int = 20,
-) -> Optional[Any]:
-    """
-    获取文章评论区列表（第一页，需要登录）。
-    :param cookies_str: 完整 Cookie 字符串
-    :param item_id: 文章 ID
-    :param cursor: 分页游标
-    :param limit: 每页条数
-    :return: API 原始 JSON（含 data[], data[].comment_info.comment_content），失败返回 None
-    """
-    cookies_str = _sanitize_cookie_header(cookies_str)
-    uuid = _extract_uuid(cookies_str)
-    url = f"{BASE_URL}/interact_api/v1/comment/list"
-    params = {"aid": AID, "uuid": uuid, "spider": SPIDER}
-    payload = {
-        "item_id": item_id,
-        "item_type": 2,
-        "cursor": cursor,
-        "limit": limit,
-        "sort": 0,
-        "client_type": 2608,
-    }
-    headers = {**_default_headers(), "Cookie": cookies_str}
-    try:
-        resp = requests.post(
-            url,
-            params=params,
-            headers=headers,
-            json=payload,
-            timeout=10,
-        )
-        resp.raise_for_status()
-        text = (resp.text or "").strip()
-        if not text:
-            return None
-        try:
-            return resp.json()
-        except ValueError:
-            return None
-    except Exception as e:
-        print(f"❌ 获取文章评论列表失败 {item_id}: {e}")
-        return None
-
-
-def comment_article(cookies_str: str, item_id: str, comment_content: str) -> bool:
-    """
-    评论一篇文章（需要登录）。
-    若接口返回空，需同时提供：JUEJIN_CSRF_TOKEN、JUEJIN_MS_TOKEN、JUEJIN_A_BOGUS（从浏览器评论请求的 URL 与请求头复制）。
-    """
-    cookies_str = _sanitize_cookie_header(cookies_str)
-    uuid = _extract_uuid(cookies_str)
-    url = f"{BASE_URL}/interact_api/v1/comment/publish"
-    params = {"aid": AID, "uuid": uuid, "spider": SPIDER}
-    ms_token = (os.getenv("JUEJIN_MS_TOKEN") or "").strip()
-    a_bogus = (os.getenv("JUEJIN_A_BOGUS") or "").strip()
-    if ms_token:
-        try:
-            params["msToken"] = urllib.parse.unquote(ms_token)
-        except Exception:
-            params["msToken"] = ms_token
-    if a_bogus:
-        try:
-            params["a_bogus"] = urllib.parse.unquote(a_bogus)
-        except Exception:
-            params["a_bogus"] = a_bogus
-    payload = {
-        "client_type": 2608,
-        "item_id": item_id,
-        "item_type": 2,
-        "comment_content": comment_content,
-        "comment_pics": [],
-    }
-    headers = {**_default_headers(), "Cookie": cookies_str}
-    csrf = (os.getenv("JUEJIN_CSRF_TOKEN") or "").strip()
-    if csrf:
-        headers["x-secsdk-csrf-token"] = csrf
-    try:
-        resp = requests.post(
-            url,
-            params=params,
-            headers=headers,
-            json=payload,
-            timeout=10,
-        )
-        resp.raise_for_status()
-        text = (resp.text or "").strip()
-        if not text:
-            has_csrf = "是" if csrf else "否"
-            has_ms = "是" if ms_token else "否"
-            has_ab = "是" if a_bogus else "否"
-            print(f"❌ 评论文章失败 {item_id}: 接口返回空 | 已带 CSRF: {has_csrf}, msToken: {has_ms}, a_bogus: {has_ab}（若均为是仍失败，多半为 msToken/a_bogus 已过期，请从浏览器评论请求 URL 重新复制）")
-            return False
-        try:
-            data = resp.json()
-        except ValueError:
-            print(f"❌ 评论文章失败 {item_id}: 接口返回非 JSON，status={resp.status_code} body={text[:100]!r}")
-            return False
-        return data.get("err_no") == 0
-    except requests.exceptions.HTTPError as e:
-        print(f"❌ 评论文章失败 {item_id}: HTTP {e.response.status_code if e.response else ''} {e}")
-        return False
-    except Exception as e:
-        print(f"❌ 评论文章失败 {item_id}: {e}")
-        return False
 
 
 def run_query_main_articles(limit: int = 10):
