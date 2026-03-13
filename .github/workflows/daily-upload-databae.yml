@@ -2,8 +2,8 @@ name: AI编写并上传文章（大号）
 
 on:
   schedule:
-    # 每天 09:35 北京时间 = 01:35 UTC
-    - cron: '35 1 * * *'
+    # 每天 06:35 北京时间 = 22:35 UTC (前一天)
+    - cron: '35 22 * * *'
   workflow_dispatch:
 
 jobs:
