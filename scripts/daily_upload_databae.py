@@ -39,32 +39,56 @@ def get_today_mmdd() -> str:
 
 
 def parse_index_md(content: str):
-    """从 index.md 解析：标题（首行 # 后）、摘要（首段 > 引用，50–100 字）、正文。"""
-    lines = content.strip().split("\n")
+    """
+    从 index.md 解析：标题（首行 # 后）、摘要（首段 > 引用，50–100 字）、正文。
+    正文：以第一个独立行 '---' 之后（含该行）的全部内容；若无 '---' 则取除标题和 > 摘要块外的全部。
+    """
+    raw = content.strip()
+    lines = raw.split("\n")
     title = ""
     brief_lines = []
-    body_lines = []
-    in_brief = False
-    after_sep = False
-
-    for line in lines:
-        if not title and line.strip().startswith("# "):
-            title = line.strip()[2:].strip()
-            continue
+    # 正文：优先取第一个 "---" 之后（含）的全部
+    sep_idx = -1
+    for i, line in enumerate(lines):
         if line.strip() == "---":
-            after_sep = True
-            if in_brief:
+            sep_idx = i
+            break
+    if sep_idx >= 0:
+        body = "\n".join(lines[sep_idx:]).strip()
+    else:
+        body_lines = []
+        in_brief = False
+        for line in lines:
+            if not title and line.strip().startswith("# "):
+                title = line.strip()[2:].strip()
+                continue
+            if line.strip().startswith(">"):
+                in_brief = True
+                brief_lines.append(line.strip()[1:].strip())
+                continue
+            if in_brief and (not line.strip() or not line.strip().startswith(">")):
                 in_brief = False
             body_lines.append(line)
-            continue
-        if not after_sep and line.strip().startswith(">"):
-            in_brief = True
-            brief_lines.append(line.strip()[1:].strip())
-            continue
-        if in_brief and (not line.strip() or not line.strip().startswith(">")):
-            in_brief = False
-        body_lines.append(line)
+        body = "\n".join(body_lines).strip()
 
+    # 标题：若尚未从首行解析到，尝试从正文首行 # 取
+    if not title and body:
+        m = re.match(r"^#\s+(.+)$", body.strip())
+        if m:
+            title = m.group(1).strip()
+    if not title:
+        for line in lines:
+            if line.strip().startswith("# "):
+                title = line.strip()[2:].strip()
+                break
+    title = title or "未命名"
+
+    # 摘要：仅从 "---" 之前的行里取 > 引用
+    if sep_idx > 0:
+        brief_lines = []
+        for line in lines[:sep_idx]:
+            if line.strip().startswith(">"):
+                brief_lines.append(line.strip()[1:].strip())
     brief = " ".join(brief_lines).strip() if brief_lines else ""
     if not brief and title:
         brief = title
@@ -73,12 +97,10 @@ def parse_index_md(content: str):
     elif len(brief) > 100:
         brief = brief[:100]
 
-    body = "\n".join(body_lines).strip()
-    if not title and body:
-        m = re.match(r"^#\s+(.+)$", body.strip())
-        if m:
-            title = m.group(1).strip()
-    return title or "未命名", brief, body or content
+    # 正文为空时用全文，避免上传无内容
+    if not body or len(body) < 20:
+        body = raw
+    return title, brief, body
 
 
 def collect_today_articles():
@@ -160,12 +182,15 @@ def run():
         else:
             column_ids = []
 
+        body_len = len(mark_content)
         if theme_ids:
-            print(f"  [{i}/{len(articles)}] 📄 {title[:40]}… | 话题: 已选")
+            print(f"  [{i}/{len(articles)}] 📄 {title[:40]}… | 正文 {body_len} 字 | 话题: 已选")
         else:
-            print(f"  [{i}/{len(articles)}] 📄 {title[:40]}… | 话题: 未选")
+            print(f"  [{i}/{len(articles)}] 📄 {title[:40]}… | 正文 {body_len} 字 | 话题: 未选")
         if column_ids:
             print(f"  [{i}/{len(articles)}]    专栏: 已选 {len(column_ids)} 个")
+        if body_len < 100:
+            print(f"  [{i}/{len(articles)}] ⚠️ 正文过短({body_len}字)，请检查 index.md 是否有 --- 及正文")
 
         article_id, draft_id = publish_article(
             cookies,

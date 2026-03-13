@@ -2,7 +2,6 @@
 
 > 从 CommonJS 到 ES Module，lodash-es 不只是后缀变化，更是打包体积、Tree Shaking 和性能的全面升级。本文通过源码对比，带你理解 ES Module 如何让 lodash 瘦身 90%+。
 
----
 
 ## 一、这东西是什么
 
@@ -328,7 +327,6 @@ lodash 到 lodash-es 的升级，远不止是后缀变化：
 
 **最后提醒**：lodash-es 不是银弹，如果项目需要大量 lodash 函数，直接导入整个库可能更合适。但对于大多数现代前端项目，lodash-es + Tree Shaking 是最佳选择。
 
----
 
 **如果对你有用，欢迎点赞、收藏、关注！** 下一篇我们将深入分析 antd 组件的源码实现。
 
