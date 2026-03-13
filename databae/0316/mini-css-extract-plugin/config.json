@@ -3,5 +3,7 @@
     "tagIds": "6809641196347965472,6809640496989028365",
     "publish": true,
     "themeIds": "7243698841848348730",
-    "columnIds": "7614788881903206406"
+    "columnIds": "7614788881903206406",
+    "title": "mini-css-extract-plugin：生产环境 CSS 提取的最佳方案",
+    "brief": "告别 style-loader，让 CSS 独立加载并支持缓存 本文带你搞懂。 本文从原理到实战带你搞懂，阅读即可掌握。"
 }

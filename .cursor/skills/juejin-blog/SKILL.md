@@ -317,8 +317,11 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
    - **columnIds**：先由**专栏专家**根据正文判断文章是否符合某专栏定位（见「六、专栏专家」）；若符合，则写入该专栏的 column_id（可多个，用数组或逗号分隔）。
 5. **代为写入文件**：在项目根下创建并写入以下两个文件（**不要**只输出「请用户自己创建」的说明，而是**直接写出完整文件内容并保存**）：
    - **`databae/{MMDD}/{slug}/config.json`**
+     - **必须含主标题与摘要**：`title`（主标题）、`brief`（摘要，**50–100 个字符**，否则发布接口会报错）。上传时脚本**直接读取 config 的 title/brief**，不解析 index.md，避免解析歧义。
      ```json
      {
+       "title": "文章主标题",
+       "brief": "一句话摘要：读者能获得什么、解决什么问题。50–100 字。",
        "categoryId": "分类 id",
        "tagIds": "标签 id1,标签 id2",
        "publish": true,
@@ -329,10 +332,7 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
      - **themeIds**（可选）：创作话题 id。介绍类、API 类、入门类建议「每天一个知识点」`7243698841848348730`。不填则由上传脚本自动匹配。
      - **columnIds**（可选）：专栏 id，单个字符串或逗号分隔、或数组。由**专栏专家**判断文章是否符合某专栏后填写；不符合则不写或 `[]`。
    - **`databae/{MMDD}/{slug}/index.md`**
-     - 首行：`# 文章标题`
-     - 紧接着：`> 摘要`（**50–100 个字符**，否则发布接口会报错）
-     - 然后：`---`
-     - 之后：正文 Markdown（与内容/风格专家产出格式一致）
+     - 仅写**正文 Markdown**（从第一个 `---` 之后或从 `## 一、…` 开始均可）；若为兼容旧逻辑也可保留 `# 标题`、`> 摘要`、`---`，但上传以 config 的 title/brief 为准。
 6. **反馈**：告知用户「已写入 `databae/{MMDD}/{slug}/`，将在 **{M} 月 {D} 日** 由每日 17:35 的自动任务上传」；若已填 themeIds/columnIds，可一并说明。
 
 ### databae 规范小结
@@ -340,8 +340,8 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 | 项 | 说明 |
 |----|------|
 | **目录** | `databae/{MMDD}/{slug}/`，MMDD = 月日（如 0309），slug = 英文小写连字符 |
-| **config.json** | `categoryId`、`tagIds`（逗号分隔）、`publish`、**themeIds**（可选，创作话题）、**columnIds**（可选，专栏 id，逗号或数组） |
-| **index.md** | `# 标题` → `> 摘要`（50–100 字）→ `---` → 正文 |
+| **config.json** | **title**（主标题）、**brief**（摘要，50–100 字）、`categoryId`、`tagIds`（逗号分隔）、`publish`、**themeIds**（可选）、**columnIds**（可选）。上传时**直接读 config 的 title/brief**，不解析 index.md。 |
+| **index.md** | 正文 Markdown（可含 `# 标题`、`> 摘要`、`---` 以兼容或便于阅读，但标题/摘要以 config 为准） |
 
 ### 创作话题（themeIds）与专栏（columnIds）
 
@@ -358,8 +358,8 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 
 - [ ] 已确认 MMDD（用户指定或默认当天）
 - [ ] slug 符合 kebab-case，且当日目录下不重名
-- [ ] config.json 含 categoryId、tagIds、publish；建议含 themeIds（介绍/API 类用每天一个知识点）；若专栏专家判断符合某专栏则含 columnIds
-- [ ] index.md 含 # 标题、> 摘要（≤100 字）、---、正文
+- [ ] config.json 含 **title**、**brief**（50–100 字）、categoryId、tagIds、publish；建议含 themeIds；若专栏专家判断符合某专栏则含 columnIds
+- [ ] index.md 含正文（可含 # 标题、> 摘要、---，但上传以 config 的 title/brief 为准）
 - [ ] 已实际写入文件并告知用户目标发布日期
 
 ---

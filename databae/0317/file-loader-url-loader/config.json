@@ -3,5 +3,7 @@
     "tagIds": "6809641196347965472,6809637769959178254",
     "publish": true,
     "themeIds": "7243698841848348730",
-    "columnIds": "7614813751927554111"
+    "columnIds": "7614813751927554111",
+    "title": "file-loader 与 url-loader：静态资源处理的演进史",
+    "brief": "从传统 loader 到 webpack 5 Asset Modules 的迁移指南 本文带你搞懂。"
 }

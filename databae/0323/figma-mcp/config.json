@@ -3,5 +3,7 @@
     "tagIds": "7119393313866104863,6809640398105870343",
     "publish": true,
     "themeIds": "7243698841848348730",
-    "columnIds": "7614788881903042566"
+    "columnIds": "7614788881903042566",
+    "title": "Figma MCP：用 AI 自动生成设计稿的黑科技",
+    "brief": "介绍 Figma MCP Server，让 Claude 直接操作 Figma 本文带你搞懂。 本文从原理到实战带你搞懂，阅读即可掌握。"
 }

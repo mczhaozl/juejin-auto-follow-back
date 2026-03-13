@@ -1,6 +1,8 @@
 {
-  "categoryId": "6809637771511070734",
-  "tagIds": "6809640445233070094,6809640496040321060",
-  "publish": true,
-  "themeIds": "7487778802563547174"
+    "categoryId": "6809637771511070734",
+    "tagIds": "6809640445233070094,6809640496040321060",
+    "publish": true,
+    "themeIds": "7487778802563547174",
+    "title": "Chrome DevTools MCP Server 介绍",
+    "brief": "介绍 Chrome DevTools MCP Server，让 AI 助手能够直接操作浏览器进行调试、测试和自动化。"
 }

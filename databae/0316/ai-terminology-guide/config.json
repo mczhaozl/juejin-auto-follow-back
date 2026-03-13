@@ -1,5 +1,7 @@
 {
-  "categoryId": "6809637776263217160",
-  "tagIds": "6809640496317751303,6809641260929015839,6809640445233070088",
-  "publish": true
+    "categoryId": "6809637776263217160",
+    "tagIds": "6809640496317751303,6809641260929015839,6809640445233070088",
+    "publish": true,
+    "title": "AI 世界的新黑话：Skills、MCP、Projects、Prompts 一文看懂",
+    "brief": "2026 年的 AI 开发，不懂这些术语你就out了。从 Prompt 到 Skill，从 MCP 到 Projects，这篇文章带你搞懂 AI 工具链的新概念。"
 }

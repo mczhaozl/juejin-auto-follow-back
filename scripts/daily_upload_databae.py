@@ -41,21 +41,25 @@ def get_today_mmdd() -> str:
 def parse_index_md(content: str):
     """
     从 index.md 解析：标题（首行 # 后）、摘要（首段 > 引用，50–100 字）、正文。
-    正文：以第一个独立行 '---' 之后（含该行）的全部内容；若无 '---' 则取除标题和 > 摘要块外的全部。
+    正文规则：若有至少 2 个独立行 '---'，正文 = 第一个与最后一个 '---' 之间的内容（不含这两行，中间的 --- 保留为正文分隔线）；
+    若只有 1 个 '---' 则取该行之后的全部；若无则取除标题和 > 摘要块外的全部。
     """
     raw = content.strip()
     lines = raw.split("\n")
     title = ""
     brief_lines = []
-    # 正文：优先取第一个 "---" 之后（含）的全部
-    sep_idx = -1
-    for i, line in enumerate(lines):
-        if line.strip() == "---":
-            sep_idx = i
-            break
-    if sep_idx >= 0:
-        body = "\n".join(lines[sep_idx:]).strip()
+    sep_indices = [i for i, line in enumerate(lines) if line.strip() == "---"]
+    if len(sep_indices) >= 2:
+        first, last = sep_indices[0], sep_indices[-1]
+        body = "\n".join(lines[first + 1 : last]).strip()
+        sep_idx = first
+    elif len(sep_indices) == 1:
+        sep_idx = sep_indices[0]
+        body = "\n".join(lines[sep_idx + 1 :]).strip()
     else:
+        sep_idx = -1
+        body = ""
+    if sep_idx < 0:
         body_lines = []
         in_brief = False
         for line in lines:
@@ -131,10 +135,18 @@ def collect_today_articles():
         except Exception as e:
             print(f"⚠️ 跳过 {sub.name}: index.md 读取失败 {e}")
             continue
-        title, brief, mark_content = parse_index_md(raw)
+        parsed_title, parsed_brief, mark_content = parse_index_md(raw)
+        # 优先使用 config 中的 title、brief，不解析文档
+        title = (config.get("title") or "").strip() or parsed_title
+        brief = (config.get("brief") or "").strip() or parsed_brief
         if not title or not mark_content:
             print(f"⚠️ 跳过 {sub.name}: 标题或正文为空")
             continue
+        if not brief or len(brief) < 50:
+            brief = (brief or title or "") + " " * 60
+            brief = brief[:100].rstrip().ljust(50)
+        elif len(brief) > 100:
+            brief = brief[:100]
         result.append((sub, config, title, brief, mark_content))
     return result
 
