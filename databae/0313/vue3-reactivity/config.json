@@ -1,0 +1,8 @@
+{
+    "title": "Vue 3 响应式完全指南：Ref、Reactive、Effect 与依赖收集原理",
+    "brief": "从 ref/reactive 用法到 effect、依赖收集、调度，再到与 Vue 2 的对比和迁移注意点，一篇搞懂 Vue 3 响应式。",
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809640407484334093,6809640398105870350",
+    "publish": true,
+    "themeIds": "7243698841848348730"
+}

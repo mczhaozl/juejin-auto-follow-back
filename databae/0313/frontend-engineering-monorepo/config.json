@@ -1,0 +1,8 @@
+{
+    "title": "现代前端工程化链路：从 Monorepo、规范化到 CI/CD 的落地实践",
+    "brief": "Monorepo（pnpm workspace）、ESLint/Prettier/提交规范、类型检查、单测与 E2E、GitHub Actions 发布与部署。",
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809641196347965472,6809640496989028365",
+    "publish": true,
+    "themeIds": "7243698841848348730"
+}

@@ -1,0 +1,9 @@
+{
+    "title": "从零理解 React 18 并发渲染：Suspense、useTransition 与可中断更新",
+    "brief": "讲清 React 18 并发模型、Suspense 数据获取、useTransition 使用场景与原理，能自己判断何时上并发、如何避免坑。",
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809640407484334093,6809640398105870343",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "columnIds": "7614788881903042566"
+}
