@@ -1,0 +1,9 @@
+{
+    "title": "React Fiber 调度器源码解析：从 workLoop 到 commit 的完整渲染链路",
+    "brief": "从 Scheduler、Fiber 树、workLoopConcurrent 到 commitRoot，拆解 React 18 可中断渲染与双缓冲的源码实现。",
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809640407484334093,6809640398105870343",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "columnIds": "7614788881903042566"
+}

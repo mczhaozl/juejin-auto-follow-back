@@ -1,0 +1,9 @@
+{
+    "title": "V8 与 JavaScript 执行：从字节码、Ignition 到 TurboFan JIT 的完整管线",
+    "brief": "解析 V8 的解析、字节码生成、Ignition 解释执行与 TurboFan 优化编译，理解 JS 引擎如何把源码变成机器码。",
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809640407484334093,6809640398105870350",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "columnIds": "7614802150373064747"
+}
