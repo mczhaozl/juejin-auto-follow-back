@@ -189,9 +189,7 @@ def run():
     for i, (art_dir, config, title, brief, mark_content) in enumerate(articles, 1):
         if SKIP_IF_ALREADY_PUBLISHED and should_skip_upload_by_title(title, published_titles):
             print(f"  [{i}/{len(articles)}] ⏭️  {title[:40]}… 已发布过（标题在大号前 {PUBLISHED_TITLES_LIMIT} 篇中），跳过")
-            if i < len(articles):
-                time.sleep(UPLOAD_INTERVAL_SEC)
-            continue
+            continue  # 跳过不等待
 
         category_id = str(config.get("categoryId") or "")
         tag_ids_raw = config.get("tagIds") or ""
