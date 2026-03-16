@@ -250,6 +250,25 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 - **分类**：根据正文主题选一个主领域（后端 / 前端 / 人工智能 / 开发工具 / 代码人生 / 阅读 等），从 [reference.md](reference.md) 或分类接口取对应 `category_id`。
 - **标签**：根据技术栈、主题词取 1–5 个标签 id（可参考 reference 或调 `query_tag_list` 的 key_word）。标签需与内容相关。
 
+### 封面图（cover_image）
+
+存草稿或发布时，根据**文章内容**（标题、摘要、正文主题）选择封面图并传入接口的 **cover_image** 字段；无合适匹配则保持原样（不传或传空）。
+
+**按内容匹配的封面图 URL 表**（由 AI 根据主题决定，取最匹配的一项；主题不在此表则不填 cover_image）：
+
+| 主题关键词 | cover_image URL |
+|------------|-----------------|
+| **React** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/453f4b76fdde4122899ad5904a9a7929~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773713426&x-orig-sign=sdA0cspKEwrPljgV6nKT3P20O4Y%3D` |
+| **AI**（大模型、AI 编程、人工智能等） | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/ec2c214fbfb042cdbfaed0520bd486ba~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714587&x-orig-sign=%2FDtZyDW3yP69PBAC4j2dMqJ0Kco%3D` |
+| **JavaScript** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cf5c06d519874467b70ce10feb045c29~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714634&x-orig-sign=CtPA2sVZ0CJV0cCrp4sO5%2Ffv1mk%3D` |
+| **webpack** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/1f1ecdf5fc1446439f2cadc340108b10~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714734&x-orig-sign=KQsWR03XLcBEZcfHJ%2B8v6eEiTGs%3D` |
+| **Vue** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/7ad6183f4f2d4a578d5b66d2dec3695e~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714760&x-orig-sign=%2B%2BHewSVlJoZLhlb614YQIKgAjMs%3D` |
+| **Java** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/16861372743f423aaa56ae54b045813a~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773715022&x-orig-sign=8a%2BSDLKEcDKGI0gC8t9wJPVL1EY%3D` |
+| **Android** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/8826c22c577648719d034e420d307f48~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773716394&x-orig-sign=mSoQqMseBqLuIaQrFhoEwDA02ug%3D` |
+
+- **立即发布**：发布专家在代为执行发布脚本时，根据正文主题从表中选取 cover_image（有则传入，无则保持原样）。
+- **定时发布**：定时发布专家在写入 `databae/{MMDD}/{slug}/config.json` 时，**由 AI 根据文章内容决定**是否写入 **cover_image** 字段；若主题匹配上表则写入对应 URL，若无合适匹配则不写该字段（上传脚本读取时缺省为空）。这样上传脚本（如 `daily_upload_databae.py`）会从 config 读取 `cover_image` 并传给发布接口。
+
 ### 执行前检查
 
 - **Cookie**：脚本依赖 `cookie.txt`（项目根目录）或环境变量 `JUEJIN_COOKIE`。若未配置，发布专家应先提示用户配置 cookie，再代为执行；若已配置，则**直接执行**脚本并反馈结果。**主动发布，无需询问用户是否确认**，执行后反馈链接或报错即可。
@@ -331,6 +350,7 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
      ```
      - **themeIds**（可选）：创作话题 id。介绍类、API 类、入门类建议「每天一个知识点」`7243698841848348730`。不填则由上传脚本自动匹配。
      - **columnIds**（可选）：专栏 id，单个字符串或逗号分隔、或数组。由**专栏专家**判断文章是否符合某专栏后填写；不符合则不写或 `[]`。
+     - **cover_image**（可选）：封面图 URL。由 AI 根据文章内容（标题/摘要/主题）从「封面图 URL 表」（见五、发布专家 - 封面图）中选取；无匹配则不写，上传时保持原样。
    - **`databae/{MMDD}/{slug}/index.md`**
      - 仅写**正文 Markdown**（从第一个 `---` 之后或从 `## 一、…` 开始均可）；若为兼容旧逻辑也可保留 `# 标题`、`> 摘要`、`---`，但上传以 config 的 title/brief 为准。
 6. **反馈**：告知用户「已写入 `databae/{MMDD}/{slug}/`，将在 **{M} 月 {D} 日** 由每日 17:35 的自动任务上传」；若已填 themeIds/columnIds，可一并说明。
@@ -340,7 +360,7 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 | 项 | 说明 |
 |----|------|
 | **目录** | `databae/{MMDD}/{slug}/`，MMDD = 月日（如 0309），slug = 英文小写连字符 |
-| **config.json** | **title**（主标题）、**brief**（摘要，50–100 字）、`categoryId`、`tagIds`（逗号分隔）、`publish`、**themeIds**（可选）、**columnIds**（可选）。上传时**直接读 config 的 title/brief**，不解析 index.md。 |
+| **config.json** | **title**（主标题）、**brief**（摘要，50–100 字）、`categoryId`、`tagIds`（逗号分隔）、`publish`、**themeIds**（可选）、**columnIds**（可选）、**cover_image**（可选，封面图 URL）。上传时**直接读 config 的 title/brief/cover_image**，不解析 index.md。 |
 | **index.md** | 正文 Markdown（可含 `# 标题`、`> 摘要`、`---` 以兼容或便于阅读，但标题/摘要以 config 为准） |
 
 ### 创作话题（themeIds）与专栏（columnIds）
@@ -358,7 +378,7 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 
 - [ ] 已确认 MMDD（用户指定或默认当天）
 - [ ] slug 符合 kebab-case，且当日目录下不重名
-- [ ] config.json 含 **title**、**brief**（50–100 字）、categoryId、tagIds、publish；建议含 themeIds；若专栏专家判断符合某专栏则含 columnIds
+- [ ] config.json 含 **title**、**brief**（50–100 字）、categoryId、tagIds、publish；建议含 themeIds；若专栏专家判断符合某专栏则含 columnIds；根据内容匹配则含 **cover_image**
 - [ ] index.md 含正文（可含 # 标题、> 摘要、---，但上传以 config 的 title/brief 为准）
 - [ ] 已实际写入文件并告知用户目标发布日期
 

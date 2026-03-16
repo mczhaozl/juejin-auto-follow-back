@@ -31,9 +31,11 @@ def create_draft(
     category_id: str,
     tag_ids: List[str],
     theme_ids: Optional[List[str]] = None,
+    cover_image: Optional[str] = None,
 ) -> Optional[str]:
     """
     创建文章草稿。brief_content 需 50–100 字。
+    :param cover_image: 封面图 URL，可选；不传或空则接口使用空字符串。
     :return: draft_id（即 data.id），失败返回 None
     """
     cookies_str = _sanitize_cookie_header(cookies_str)
@@ -55,7 +57,7 @@ def create_draft(
         "mark_content": mark_content,
         "theme_ids": theme_ids or [],
         "link_url": "",
-        "cover_image": "",
+        "cover_image": (cover_image or "").strip(),
         "pics": [],
     }
     headers = {**_default_headers(), "Cookie": cookies_str}
@@ -122,14 +124,23 @@ def publish_article(
     theme_ids: Optional[List[str]] = None,
     column_ids: Optional[List[str]] = None,
     do_publish: bool = True,
+    cover_image: Optional[str] = None,
 ) -> Tuple[Optional[str], Optional[str]]:
     """
     创建草稿并可选发布。
     :param column_ids: 专栏 id 列表，可选
+    :param cover_image: 封面图 URL，可选
     :return: (article_id, None) 成功；(None, draft_id) 仅草稿；(None, None) 失败
     """
     draft_id = create_draft(
-        cookies_str, title, mark_content, brief_content, category_id, tag_ids, theme_ids
+        cookies_str,
+        title,
+        mark_content,
+        brief_content,
+        category_id,
+        tag_ids,
+        theme_ids,
+        cover_image=cover_image,
     )
     if not draft_id:
         return None, None

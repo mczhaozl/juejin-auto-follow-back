@@ -232,6 +232,8 @@ def run():
         if body_len < 100:
             print(f"  [{i}/{len(articles)}] ⚠️ 正文过短({body_len}字)，请检查 index.md 是否有 --- 及正文")
 
+        cover_image = (config.get("cover_image") or config.get("coverImage") or "").strip() or None
+
         article_id, draft_id = publish_article(
             cookies,
             title=title,
@@ -242,6 +244,7 @@ def run():
             theme_ids=theme_ids,
             column_ids=column_ids,
             do_publish=do_publish,
+            cover_image=cover_image,
         )
         if article_id:
             print(f"  [{i}/{len(articles)}] ✅ 已发布 article_id={article_id}")
