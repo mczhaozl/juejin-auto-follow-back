@@ -1,0 +1,8 @@
+{
+  "title": "Vue 3 响应式系统 Reactivity 源码深度解析：从 ref 到 effect 的完整链路",
+  "brief": "从 ref、reactive、effect、computed 到依赖收集与派发更新，逐层拆解 Vue 3 reactivity 模块的源码实现与设计取舍。",
+  "categoryId": "6809637767543259144",
+  "tagIds": "6809640407484334093,6809640496989028365",
+  "publish": true,
+  "themeIds": "7243698841848348730"
+}

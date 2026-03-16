@@ -1,0 +1,9 @@
+{
+  "title": "React 18 并发与 Reconciler 源码解析：Fiber、调度器与可中断渲染",
+  "brief": "从 Fiber 树、双缓冲、Scheduler 与 Lane 模型入手，解析 React 18 并发渲染与 Reconciler 的源码实现与调度策略。",
+  "categoryId": "6809637767543259144",
+  "tagIds": "6809640407484334093,6809640496989028365",
+  "publish": true,
+  "themeIds": "7243698841848348730",
+  "columnIds": "7614788881903042566"
+}
