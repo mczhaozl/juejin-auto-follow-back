@@ -27,9 +27,14 @@ if str(_repo_root) not in sys.path:
 
 from scripts.juejin_article import publish_article
 from scripts.juejin_themes import pick_theme_for_article
+from scripts.juejin_collect import get_main_account_published_titles
 
 DATABAE_DIR = _repo_root / "databae"
 UPLOAD_INTERVAL_SEC = 60
+
+# 上传前是否根据「大号前 10 篇标题」判重：已发布过则跳过。设为 False 或环境变量 SKIP_IF_ALREADY_PUBLISHED=0 可关闭
+SKIP_IF_ALREADY_PUBLISHED = os.getenv("SKIP_IF_ALREADY_PUBLISHED", "1").strip().lower() in ("1", "true", "yes")
+PUBLISHED_TITLES_LIMIT = 10
 
 
 def get_today_mmdd() -> str:
@@ -151,6 +156,18 @@ def collect_today_articles():
     return result
 
 
+def get_published_titles_for_skip_check(limit: int = 10) -> set:
+    """获取大号已发布文章标题集合，用于上传前判重。失败时返回空集合。"""
+    return get_main_account_published_titles(limit=limit)
+
+
+def should_skip_upload_by_title(title: str, published_titles: set) -> bool:
+    """若 title 已出现在大号已发布标题集合中，则应跳过本次上传。"""
+    if not title or not published_titles:
+        return False
+    return title.strip() in published_titles
+
+
 def run():
     cookies = os.getenv("JUEJIN_COOKIES")
     if not cookies:
@@ -163,8 +180,19 @@ def run():
         print(f"📭 当日（{mmdd}）无待上传文档，跳过")
         return
 
+    published_titles = set()
+    if SKIP_IF_ALREADY_PUBLISHED:
+        published_titles = get_published_titles_for_skip_check(limit=PUBLISHED_TITLES_LIMIT)
+        print(f"📌 已开启「上传前判重」：大号近 {PUBLISHED_TITLES_LIMIT} 篇标题共 {len(published_titles)} 个，与待上传标题重复则跳过")
     print(f"📌 当日（{mmdd}）共 {len(articles)} 篇，每篇间隔 {UPLOAD_INTERVAL_SEC} 秒\n")
+
     for i, (art_dir, config, title, brief, mark_content) in enumerate(articles, 1):
+        if SKIP_IF_ALREADY_PUBLISHED and should_skip_upload_by_title(title, published_titles):
+            print(f"  [{i}/{len(articles)}] ⏭️  {title[:40]}… 已发布过（标题在大号前 {PUBLISHED_TITLES_LIMIT} 篇中），跳过")
+            if i < len(articles):
+                time.sleep(UPLOAD_INTERVAL_SEC)
+            continue
+
         category_id = str(config.get("categoryId") or "")
         tag_ids_raw = config.get("tagIds") or ""
         tag_ids = [t.strip() for t in str(tag_ids_raw).split(",") if t.strip()]

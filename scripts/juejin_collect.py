@@ -204,6 +204,23 @@ def collect_article_if_not_in(
     return "failed"
 
 
+def get_main_account_published_titles(limit: int = 10) -> set:
+    """
+    获取大号最近 limit 篇文章的标题集合（用于上传前判重：若待上传标题已在此集合中则跳过）。
+    兼容返回结构中 title 在顶层或在 article_info 下的情况。
+    """
+    result = query_user_articles(DEFAULT_MAIN_USER_ID, cursor="0", limit=limit)
+    if not result or result.get("err_no") != 0:
+        return set()
+    data = result.get("data") or []
+    titles = set()
+    for item in data:
+        title = (item.get("article_info") or {}).get("title") or item.get("title") or ""
+        if isinstance(title, str) and title.strip():
+            titles.add(title.strip())
+    return titles
+
+
 def run_query_main_articles(limit: int = 10):
     """查询大号近 N 篇文章并打印。"""
     result = query_user_articles(DEFAULT_MAIN_USER_ID, cursor="0", limit=limit)
