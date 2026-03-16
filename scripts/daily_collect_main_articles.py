@@ -3,7 +3,8 @@
 """
 每日定时：所有账号（大号+小号）收藏大号新发布的 10 篇文章中未收藏的。
 - 每天 7:50 由 GitHub Actions 触发（见 .github/workflows/daily-collect-main-articles.yml）
-- 每两次收藏 API 之间间隔 30 秒
+- 每两次收藏 API 之间间隔 15 秒
+- 顺序：先按文章（同一篇文章被各账号收藏完），再处理下一篇
 """
 
 import os
@@ -23,7 +24,7 @@ from scripts.juejin_collect import (
     collect_article_if_not_in,
 )
 
-COLLECT_INTERVAL_SEC = 30
+COLLECT_INTERVAL_SEC = 15
 
 
 def gather_accounts():
@@ -41,6 +42,7 @@ def gather_accounts():
             "JUEJIN_COOKIES_ACCOUNT6",
             "JUEJIN_COOKIES_ACCOUNT7",
             "JUEJIN_COOKIES_ACCOUNT8",
+            "JUEJIN_COOKIES_ACCOUNT9",
         ],
         start=1,
     ):
@@ -60,7 +62,7 @@ def get_main_article_ids(limit: int = 10):
 
 
 def run_daily_collect():
-    """对所有账号执行：收藏大号近 10 篇中未收藏的，每次收藏后间隔 30 秒。"""
+    """先按文章再按账号：同一篇文章被各账号收藏完再处理下一篇，每次收藏后间隔 15 秒。"""
     accounts = gather_accounts()
     if not accounts:
         print("❌ 未找到 JUEJIN_COOKIES，请在 GitHub Secrets 中配置")
@@ -71,34 +73,36 @@ def run_daily_collect():
         print("❌ 未获取到大号文章列表")
         return
 
+    # 预取各账号第一个收藏夹 ID
+    accounts_with_coll = []
+    for account_name, cookies in accounts:
+        coll_res = get_collections(cookies, "")
+        if not coll_res or coll_res.get("err_no") != 0:
+            print(f"  ❌ [{account_name}] 获取收藏夹列表失败，跳过该账号")
+            continue
+        coll_data = coll_res.get("data") or []
+        if not coll_data:
+            print(f"  ❌ [{account_name}] 无收藏夹，跳过该账号")
+            continue
+        first_collection_id = coll_data[0].get("collection_id") or None
+        accounts_with_coll.append((account_name, cookies, first_collection_id))
+
+    if not accounts_with_coll:
+        print("❌ 无可用账号（收藏夹获取均失败）")
+        return
+
     print(f"📄 大号近 10 篇文章: {article_ids}")
-    print(f"👤 共 {len(accounts)} 个账号，每两次收藏 API 间隔 {COLLECT_INTERVAL_SEC} 秒\n")
+    print(f"👤 共 {len(accounts_with_coll)} 个账号，顺序：先同一文章各账号收藏，再下一篇；间隔 {COLLECT_INTERVAL_SEC} 秒\n")
 
     total_collected = 0
     total_skipped = 0
     total_failed = 0
 
-    for account_name, cookies in accounts:
+    for art_idx, article_id in enumerate(article_ids, 1):
         print(f"{'='*50}")
-        print(f"🎯 [{account_name}] 开始处理")
+        print(f"📌 文章 [{art_idx}/{len(article_ids)}] {article_id}")
         print(f"{'='*50}")
-
-        # 获取该账号第一个收藏夹 ID（不同账号可能不同）
-        coll_res = get_collections(cookies, "")
-        if not coll_res or coll_res.get("err_no") != 0:
-            print(f"  ❌ 获取收藏夹列表失败，跳过该账号\n")
-            total_failed += len(article_ids)
-            continue
-        coll_data = coll_res.get("data") or []
-        if not coll_data:
-            print(f"  ❌ 无收藏夹，跳过该账号\n")
-            continue
-        first_collection_id = coll_data[0].get("collection_id")
-        if not first_collection_id:
-            first_collection_id = None  # 让 collect_article_if_not_in 内部用默认
-
-        collected_this_account = 0
-        for i, article_id in enumerate(article_ids, 1):
+        for account_name, cookies, first_collection_id in accounts_with_coll:
             status = collect_article_if_not_in(
                 cookies,
                 article_id,
@@ -106,17 +110,15 @@ def run_daily_collect():
             )
             if status == "collected":
                 total_collected += 1
-                collected_this_account += 1
-                print(f"  [{i}/10] ✅ 已收藏 {article_id}")
+                print(f"  [{account_name}] ✅ 已收藏")
                 time.sleep(COLLECT_INTERVAL_SEC)
             elif status == "skipped":
                 total_skipped += 1
-                print(f"  [{i}/10] ⏭️  {article_id} 已在收藏夹，跳过")
+                print(f"  [{account_name}] ⏭️  已在收藏夹，跳过")
             else:
                 total_failed += 1
-                print(f"  [{i}/10] ❌ 收藏失败 {article_id}")
-
-        print(f"  [{account_name}] 本账号本次新收藏: {collected_this_account} 篇\n")
+                print(f"  [{account_name}] ❌ 收藏失败")
+        print()
 
     print(f"{'='*50}")
     print("🎉 每日收藏任务结束")
