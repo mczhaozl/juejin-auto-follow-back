@@ -94,8 +94,62 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 
 以上为推荐骨架，可根据主题增删小节（如「常见坑」「与 XX 对比」「性能注意」等），保持**详细介绍、可跟着做**的科普风格。
 
-### 内容原则
+### 长篇幅文章编写策略
 
+当需要编写**长篇幅文章**（如万字长文、深度技术分析、系列教程等）时，采用**分批次编写**策略，确保内容质量和编写效率：
+
+#### 分批次编写原则
+
+1. **使用命令行工具**：必须使用 `fsWrite`、`fsAppend`、`strReplace` 等工具直接操作文件，**不输出**需要用户执行的命令
+2. **分段创建**：先用 `fsWrite` 创建文件并写入标题、摘要和大纲，再用 `fsAppend` 逐段添加内容
+3. **控制单次写入量**：每次 `fsWrite` 或 `fsAppend` 的内容控制在合理范围内（建议不超过2000字），避免单次操作过大
+4. **连续编写**：完成一段后立即开始下一段，不询问用户是否继续，直到整篇文章完成
+
+#### 长文编写工作流
+
+```markdown
+1. **创建文件框架**：
+   - 使用 `fsWrite` 创建文件，包含标题、摘要、大纲
+   - 预设所有主要章节的标题
+
+2. **分段填充内容**：
+   - 使用 `fsAppend` 逐段添加内容
+   - 每段包含完整的小节内容
+   - 保持内容连贯性和逻辑性
+
+3. **持续编写**：
+   - 完成一段后立即开始下一段
+   - 不中断询问用户意见
+   - 直到整篇文章完成
+
+4. **最终检查**：
+   - 使用 `readFile` 检查文章完整性
+   - 必要时使用 `strReplace` 修正内容
+```
+
+#### 长文编写示例
+
+**用户说**："写一篇万字的React性能优化深度指南"
+
+**处理流程**：
+1. 使用 `fsWrite` 创建文件，包含标题、摘要、完整大纲
+2. 使用 `fsAppend` 添加"背景介绍"部分（约1500字）
+3. 使用 `fsAppend` 添加"性能分析工具"部分（约2000字）
+4. 使用 `fsAppend` 添加"组件优化策略"部分（约2500字）
+5. 使用 `fsAppend` 添加"状态管理优化"部分（约2000字）
+6. 使用 `fsAppend` 添加"渲染优化技巧"部分（约2000字）
+7. 使用 `fsAppend` 添加"总结与最佳实践"部分（约1000字）
+8. 完成后执行发布或定时发布
+
+#### 分批次编写检查
+
+- [ ] 使用命令行工具直接操作文件，不输出用户命令
+- [ ] 单次写入内容量控制在合理范围内
+- [ ] 完成一段后立即开始下一段，不中断询问
+- [ ] 保持内容的连贯性和逻辑性
+- [ ] 整篇文章完成后进行最终检查
+
+### 内容原则
 - **代码**：可直接复制运行，含必要注释；超过 20 行考虑折叠或只贴关键片段。
 - **准确性**：API、版本号、命令与官方文档或当前主流用法一致；不确定的标注「以官方文档为准」。
 - **深度**：至少一处「为什么这样做」或「和另一种方案对比」；避免只贴代码无解释。
@@ -196,6 +250,25 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 - **分类**：根据正文主题选一个主领域（后端 / 前端 / 人工智能 / 开发工具 / 代码人生 / 阅读 等），从 [reference.md](reference.md) 或分类接口取对应 `category_id`。
 - **标签**：根据技术栈、主题词取 1–5 个标签 id（可参考 reference 或调 `query_tag_list` 的 key_word）。标签需与内容相关。
 
+### 封面图（cover_image）
+
+存草稿或发布时，根据**文章内容**（标题、摘要、正文主题）选择封面图并传入接口的 **cover_image** 字段；无合适匹配则保持原样（不传或传空）。
+
+**按内容匹配的封面图 URL 表**（由 AI 根据主题决定，取最匹配的一项；主题不在此表则不填 cover_image）：
+
+| 主题关键词 | cover_image URL |
+|------------|-----------------|
+| **React** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/453f4b76fdde4122899ad5904a9a7929~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773713426&x-orig-sign=sdA0cspKEwrPljgV6nKT3P20O4Y%3D` |
+| **AI**（大模型、AI 编程、人工智能等） | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/ec2c214fbfb042cdbfaed0520bd486ba~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714587&x-orig-sign=%2FDtZyDW3yP69PBAC4j2dMqJ0Kco%3D` |
+| **JavaScript** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cf5c06d519874467b70ce10feb045c29~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714634&x-orig-sign=CtPA2sVZ0CJV0cCrp4sO5%2Ffv1mk%3D` |
+| **webpack** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/1f1ecdf5fc1446439f2cadc340108b10~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714734&x-orig-sign=KQsWR03XLcBEZcfHJ%2B8v6eEiTGs%3D` |
+| **Vue** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/7ad6183f4f2d4a578d5b66d2dec3695e~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714760&x-orig-sign=%2B%2BHewSVlJoZLhlb614YQIKgAjMs%3D` |
+| **Java** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/16861372743f423aaa56ae54b045813a~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773715022&x-orig-sign=8a%2BSDLKEcDKGI0gC8t9wJPVL1EY%3D` |
+| **Android** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/8826c22c577648719d034e420d307f48~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773716394&x-orig-sign=mSoQqMseBqLuIaQrFhoEwDA02ug%3D` |
+
+- **立即发布**：发布专家在代为执行发布脚本时，根据正文主题从表中选取 cover_image（有则传入，无则保持原样）。
+- **定时发布**：定时发布专家在写入 `databae/{MMDD}/{slug}/config.json` 时，**由 AI 根据文章内容决定**是否写入 **cover_image** 字段；若主题匹配上表则写入对应 URL，若无合适匹配则不写该字段（上传脚本读取时缺省为空）。这样上传脚本（如 `daily_upload_databae.py`）会从 config 读取 `cover_image` 并传给发布接口。
+
 ### 执行前检查
 
 - **Cookie**：脚本依赖 `cookie.txt`（项目根目录）或环境变量 `JUEJIN_COOKIE`。若未配置，发布专家应先提示用户配置 cookie，再代为执行；若已配置，则**直接执行**脚本并反馈结果。**主动发布，无需询问用户是否确认**，执行后反馈链接或报错即可。
@@ -263,8 +336,11 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
    - **columnIds**：先由**专栏专家**根据正文判断文章是否符合某专栏定位（见「六、专栏专家」）；若符合，则写入该专栏的 column_id（可多个，用数组或逗号分隔）。
 5. **代为写入文件**：在项目根下创建并写入以下两个文件（**不要**只输出「请用户自己创建」的说明，而是**直接写出完整文件内容并保存**）：
    - **`databae/{MMDD}/{slug}/config.json`**
+     - **必须含主标题与摘要**：`title`（主标题）、`brief`（摘要，**50–100 个字符**，否则发布接口会报错）。上传时脚本**直接读取 config 的 title/brief**，不解析 index.md，避免解析歧义。
      ```json
      {
+       "title": "文章主标题",
+       "brief": "一句话摘要：读者能获得什么、解决什么问题。50–100 字。",
        "categoryId": "分类 id",
        "tagIds": "标签 id1,标签 id2",
        "publish": true,
@@ -274,11 +350,9 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
      ```
      - **themeIds**（可选）：创作话题 id。介绍类、API 类、入门类建议「每天一个知识点」`7243698841848348730`。不填则由上传脚本自动匹配。
      - **columnIds**（可选）：专栏 id，单个字符串或逗号分隔、或数组。由**专栏专家**判断文章是否符合某专栏后填写；不符合则不写或 `[]`。
+     - **cover_image**（可选）：封面图 URL。由 AI 根据文章内容（标题/摘要/主题）从「封面图 URL 表」（见五、发布专家 - 封面图）中选取；无匹配则不写，上传时保持原样。
    - **`databae/{MMDD}/{slug}/index.md`**
-     - 首行：`# 文章标题`
-     - 紧接着：`> 摘要`（**50–100 个字符**，否则发布接口会报错）
-     - 然后：`---`
-     - 之后：正文 Markdown（与内容/风格专家产出格式一致）
+     - 仅写**正文 Markdown**（从第一个 `---` 之后或从 `## 一、…` 开始均可）；若为兼容旧逻辑也可保留 `# 标题`、`> 摘要`、`---`，但上传以 config 的 title/brief 为准。
 6. **反馈**：告知用户「已写入 `databae/{MMDD}/{slug}/`，将在 **{M} 月 {D} 日** 由每日 17:35 的自动任务上传」；若已填 themeIds/columnIds，可一并说明。
 
 ### databae 规范小结
@@ -286,8 +360,8 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 | 项 | 说明 |
 |----|------|
 | **目录** | `databae/{MMDD}/{slug}/`，MMDD = 月日（如 0309），slug = 英文小写连字符 |
-| **config.json** | `categoryId`、`tagIds`（逗号分隔）、`publish`、**themeIds**（可选，创作话题）、**columnIds**（可选，专栏 id，逗号或数组） |
-| **index.md** | `# 标题` → `> 摘要`（50–100 字）→ `---` → 正文 |
+| **config.json** | **title**（主标题）、**brief**（摘要，50–100 字）、`categoryId`、`tagIds`（逗号分隔）、`publish`、**themeIds**（可选）、**columnIds**（可选）、**cover_image**（可选，封面图 URL）。上传时**直接读 config 的 title/brief/cover_image**，不解析 index.md。 |
+| **index.md** | 正文 Markdown（可含 `# 标题`、`> 摘要`、`---` 以兼容或便于阅读，但标题/摘要以 config 为准） |
 
 ### 创作话题（themeIds）与专栏（columnIds）
 
@@ -304,8 +378,8 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 
 - [ ] 已确认 MMDD（用户指定或默认当天）
 - [ ] slug 符合 kebab-case，且当日目录下不重名
-- [ ] config.json 含 categoryId、tagIds、publish；建议含 themeIds（介绍/API 类用每天一个知识点）；若专栏专家判断符合某专栏则含 columnIds
-- [ ] index.md 含 # 标题、> 摘要（≤100 字）、---、正文
+- [ ] config.json 含 **title**、**brief**（50–100 字）、categoryId、tagIds、publish；建议含 themeIds；若专栏专家判断符合某专栏则含 columnIds；根据内容匹配则含 **cover_image**
+- [ ] index.md 含正文（可含 # 标题、> 摘要、---，但上传以 config 的 title/brief 为准）
 - [ ] 已实际写入文件并告知用户目标发布日期
 
 ---
@@ -328,3 +402,110 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 
 - 更多标题与摘要示例见 [reference.md](reference.md)。
 - 发布专家用到的分类 id、标签接口与命令示例见 [reference.md](reference.md) 末尾。
+
+## 八、批量文章处理专家 (Batch Article Processing Expert)
+
+**目标**：当用户要求写多篇文章时，自动处理所有文章，使用命令行工具写入文件，并持续编写直到完成任务，无需中途询问用户是否继续。
+
+### 何时使用
+
+- 用户说：写好几篇文章、批量生成文章、写一个系列、写多篇关于xxx的文章
+- 用户指定了多个主题或要求生成多篇文章
+- 需要连续处理多篇文章而不中断
+
+### 职责与产出
+
+1. **批量选题**：为每篇文章分别进行选题，确保每篇文章有独立的标题、受众和角度
+2. **连续内容生成**：为每篇文章依次生成完整内容，使用内容专家模板
+3. **命令行写入**：使用 `fsWrite` 或 `fsAppend` 工具直接写入文件，而不是输出命令让用户执行
+4. **自动继续**：完成一篇文章后立即开始下一篇，不询问用户是否继续
+5. **批量发布/定时发布**：根据用户要求，为所有文章执行发布或定时发布操作
+
+### 批量处理工作流
+
+1. **确认需求**：明确用户需要多少篇文章、主题范围、发布时间要求
+2. **批量选题**：为每篇文章生成独立的选题方案
+3. **连续内容生成**：
+   - 使用 `fsWrite` 创建每篇文章的文件
+   - 使用内容专家模板填充内容
+   - 使用风格专家优化每篇文章
+   - 完成一篇后立即开始下一篇
+4. **批量处理发布**：
+   - 如果用户要求立即发布：为每篇文章执行发布专家流程
+   - 如果用户要求定时发布：为每篇文章执行定时发布专家流程
+   - 如果用户未指定：默认执行发布专家流程
+
+### 批量处理原则
+
+- **自动化**：使用工具直接写入文件，不输出需要用户执行的命令
+- **连续性**：完成一篇后立即开始下一篇，不中断询问
+- **完整性**：每篇文章都是完整的，包含选题、内容、风格、发布/定时发布
+- **效率**：批量处理时保持高效，减少重复确认
+
+### 批量处理检查
+
+- [ ] 已确认用户需要多少篇文章
+- [ ] 每篇文章都有独立的选题方案
+- [ ] 使用命令行工具直接写入文件，而非输出命令
+- [ ] 完成一篇后自动开始下一篇，不询问是否继续
+- [ ] 所有文章都按照用户要求处理了发布/定时发布
+
+---
+
+## 更新后的工作流建议（包含批量处理）
+
+1. **单篇文章**：
+   - 选题 → 内容 → 风格 → 发布/定时发布
+
+2. **多篇文章**：
+   - 确认需求（数量、主题、时间）→ 批量选题 → 连续内容生成（使用命令行工具写入）→ 批量发布/定时发布
+
+3. **关键区别**：
+   - 多篇文章时：使用命令行工具直接写入文件，不输出需要用户执行的命令
+   - 多篇文章时：完成一篇后立即开始下一篇，不询问用户是否继续
+   - 多篇文章时：批量处理发布/定时发布操作
+
+### 示例场景
+
+**用户说**："帮我写3篇关于React Hooks的文章"
+
+**处理流程**：
+1. 确认需要3篇文章
+2. 为3篇文章分别选题（如：useState、useEffect、useContext）
+3. 使用 `fsWrite` 创建3个文件
+4. 依次为每篇文章生成内容，完成一篇后立即开始下一篇
+5. 为所有文章执行发布专家流程（或根据用户要求执行定时发布）
+
+**用户说**："写5篇AI最新变动的文章，定时发布到下周"
+
+**处理流程**：
+1. 确认需要5篇文章，下周发布
+2. 为5篇文章分别选题（AI变动专家）
+3. 使用 `fsWrite` 创建5个databae目录和文件
+4. 依次为每篇文章生成内容，完成一篇后立即开始下一篇
+5. 为所有文章执行定时发布专家流程，设置合适的发布日期
+
+---
+
+## 工具使用规范
+
+### 文件写入
+- 使用 `fsWrite` 创建新文件
+- 使用 `fsAppend` 追加内容到现有文件
+- 使用 `strReplace` 修改文件内容
+- **不输出**需要用户执行的命令行指令
+
+### 目录操作
+- 使用 `listDirectory` 查看目录结构
+- 使用 `executeBash` 创建目录（如：`mkdir -p databae/0320/react-hooks-guide`）
+- 使用 `smartRelocate` 移动或重命名文件
+
+### 批量处理
+- 使用循环逻辑处理多篇文章
+- 每篇文章完成后立即开始下一篇
+- 批量执行发布/定时发布操作
+
+### 错误处理
+- 如果某篇文章生成失败，记录错误并继续处理下一篇
+- 如果发布失败，记录错误并继续处理下一篇
+- 所有处理完成后汇总成功和失败的情况

@@ -82,6 +82,14 @@ pnpm add vite-plugin-svg-icons -D
 
 ---
 
+## 封面图（cover_image）
+
+- 存草稿/发布时根据**内容**选封面图，写入接口 `cover_image`；无匹配则保持原样（不传）。
+- 主题与 URL 映射表见 SKILL.md 中「五、发布专家 - 封面图」；支持主题：React、AI、JavaScript、webpack、Vue、Java。
+- 定时发布时由 AI 决定是否在 `databae/{MMDD}/{slug}/config.json` 中写入 **cover_image** 字段，上传脚本会读取并传给发布接口。
+
+---
+
 ## 发布专家 - 分类与标签
 
 ### 分类 id（category_id，取一个）
