@@ -330,6 +330,7 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 | **深入浅出 ahooks** | 7615004797993844772 | 深入浅出 ahooks，讲解相关 API 的构造，帮助更好地编写 React Hook |
 | **你所不知道的 javascript** | 7614802150373064747 | 介绍冷门但好用的 JavaScript 知识 |
 | **react 生态** | 7614788881903042566 | 介绍 React 及其相关生态：API、组件库、第三方工具库等 |
+| **微信小程序全流程** | 7618060317139353610 | 介绍微信小程序从开发到上线的全流程，包括需求分析、架构设计、代码生成、测试调试、CI/CD 等 |
 
 ### 职责与产出
 
