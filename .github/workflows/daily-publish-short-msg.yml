@@ -31,7 +31,7 @@ jobs:
       - name: 安装依赖
         run: pip install requests
 
-      - name: 执行发沸点（推荐第 6 条内容 + ...）
+      - name: 执行发沸点（按日期时间选诗句）
         run: python scripts/daily_publish_short_msg.py
         env:
           PYTHONUNBUFFERED: '1'
