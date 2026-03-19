@@ -3,7 +3,7 @@
 """
 每日上传 databae 中「当天」的文档到掘金（以北京时间为准）。
 - 目录规范：databae/{MMDD}/<slug>/config.json + index.md（MMDD = 北京时间的月日，如 0309 表示 3 月 9 日）
-- 每天定时执行，上传当日目录下的全部文章，每篇间隔 1 分钟；若当日没有对应目录则不上传。
+- 定时执行：每次运行可上传多篇（每篇间隔 UPLOAD_INTERVAL_SEC）或通过环境变量 UPLOAD_LIMIT_PER_RUN=1 限制为「每次只上传一篇」（配合每小时触发即每隔 1 小时上传一篇）。若当日没有对应目录则不上传。
 - Cookie：与其它定时脚本一致，使用 JUEJIN_COOKIES（大号）。
 """
 
@@ -35,6 +35,10 @@ UPLOAD_INTERVAL_SEC = 60
 # 上传前是否根据「大号前 10 篇标题」判重：已发布过则跳过。设为 False 或环境变量 SKIP_IF_ALREADY_PUBLISHED=0 可关闭
 SKIP_IF_ALREADY_PUBLISHED = os.getenv("SKIP_IF_ALREADY_PUBLISHED", "1").strip().lower() in ("1", "true", "yes")
 PUBLISHED_TITLES_LIMIT = 10
+
+# 单次运行最多上传篇数，默认不限制。设为 1 时每次只上传一篇（配合每小时 cron 即每隔 1 小时上传一篇）
+_limit = os.getenv("UPLOAD_LIMIT_PER_RUN", "").strip()
+UPLOAD_LIMIT_PER_RUN = int(_limit) if _limit.isdigit() else None
 
 
 def get_today_mmdd() -> str:
@@ -184,9 +188,13 @@ def run():
     if SKIP_IF_ALREADY_PUBLISHED:
         published_titles = get_published_titles_for_skip_check(limit=PUBLISHED_TITLES_LIMIT)
         print(f"📌 已开启「上传前判重」：大号近 {PUBLISHED_TITLES_LIMIT} 篇标题共 {len(published_titles)} 个，与待上传标题重复则跳过")
-    print(f"📌 当日（{mmdd}）共 {len(articles)} 篇，每篇间隔 {UPLOAD_INTERVAL_SEC} 秒\n")
+    limit_msg = f"，本次最多上传 {UPLOAD_LIMIT_PER_RUN} 篇" if UPLOAD_LIMIT_PER_RUN else ""
+    print(f"📌 当日（{mmdd}）共 {len(articles)} 篇，每篇间隔 {UPLOAD_INTERVAL_SEC} 秒{limit_msg}\n")
 
+    uploaded_count = 0
     for i, (art_dir, config, title, brief, mark_content) in enumerate(articles, 1):
+        if UPLOAD_LIMIT_PER_RUN is not None and uploaded_count >= UPLOAD_LIMIT_PER_RUN:
+            break
         if SKIP_IF_ALREADY_PUBLISHED and should_skip_upload_by_title(title, published_titles):
             print(f"  [{i}/{len(articles)}] ⏭️  {title[:40]}… 已发布过（标题在大号前 {PUBLISHED_TITLES_LIMIT} 篇中），跳过")
             continue  # 跳过不等待
@@ -246,12 +254,16 @@ def run():
         )
         if article_id:
             print(f"  [{i}/{len(articles)}] ✅ 已发布 article_id={article_id}")
+            uploaded_count += 1
         elif draft_id:
             print(f"  [{i}/{len(articles)}] 📝 已存草稿 draft_id={draft_id}")
+            uploaded_count += 1
         else:
             print(f"  [{i}/{len(articles)}] ❌ 发布失败")
 
-        if i < len(articles):
+        if (UPLOAD_LIMIT_PER_RUN is not None and uploaded_count >= UPLOAD_LIMIT_PER_RUN) or i >= len(articles):
+            pass  # 已达单次上限或已处理完，不再 sleep
+        else:
             time.sleep(UPLOAD_INTERVAL_SEC)
 
     print("\n🎉 完成\n")

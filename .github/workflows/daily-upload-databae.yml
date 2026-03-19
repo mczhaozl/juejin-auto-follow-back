@@ -2,8 +2,8 @@ name: AI编写并上传文章（大号）
 
 on:
   schedule:
-    # 每天 06:35 北京时间 = 22:35 UTC (前一天)
-    - cron: '35 22 * * *'
+    # 每隔 1 小时运行一次（整点 UTC = 8:00/9:00/… 北京时间），每次上传 1 篇
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -23,7 +23,8 @@ jobs:
         run: |
           pip install requests
 
-      - name: 执行上传（当日 databae/MMDD，每篇间隔 1 分钟）
+      - name: 执行上传（当日 databae/MMDD，本次只上传 1 篇）
         run: python scripts/daily_upload_databae.py
         env:
           JUEJIN_COOKIES: ${{ secrets.JUEJIN_COOKIES }}
+          UPLOAD_LIMIT_PER_RUN: '1'

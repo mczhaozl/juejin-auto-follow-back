@@ -294,6 +294,7 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 | **Vue** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/7ad6183f4f2d4a578d5b66d2dec3695e~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714760&x-orig-sign=%2B%2BHewSVlJoZLhlb614YQIKgAjMs%3D` |
 | **Java** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/16861372743f423aaa56ae54b045813a~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773715022&x-orig-sign=8a%2BSDLKEcDKGI0gC8t9wJPVL1EY%3D` |
 | **Android** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/8826c22c577648719d034e420d307f48~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773716394&x-orig-sign=mSoQqMseBqLuIaQrFhoEwDA02ug%3D` |
+| **AI Skill**（AI技能、Prompt、工具等） | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/140bf5a7d7044ea7b2bb1b050572ef34~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773971279&x-orig-sign=oCYwWXb2v6%2FDYcnify6%2BZoRswHY%3D` |
 
 - **立即发布**：发布专家在代为执行发布脚本时，根据正文主题从表中选取 cover_image（有则传入，无则保持原样）。
 - **定时发布**：定时发布专家在写入 `databae/{MMDD}/{slug}/config.json` 时，**由 AI 根据文章内容决定**是否写入 **cover_image** 字段；若主题匹配上表则写入对应 URL，若无合适匹配则不写该字段（上传脚本读取时缺省为空）。这样上传脚本（如 `daily_upload_databae.py`）会从 config 读取 `cover_image` 并传给发布接口。
@@ -331,6 +332,7 @@ description: Generates Juejin (掘金) technical blog posts with topic selection
 | **你所不知道的 javascript** | 7614802150373064747 | 介绍冷门但好用的 JavaScript 知识 |
 | **react 生态** | 7614788881903042566 | 介绍 React 及其相关生态：API、组件库、第三方工具库等 |
 | **微信小程序全流程** | 7618060317139353610 | 介绍微信小程序从开发到上线的全流程，包括需求分析、架构设计、代码生成、测试调试、CI/CD 等 |
+| **每天一个AI skill** | 7618429267022413862 | 介绍AI领域的实用技能、工具、Prompt技巧、API使用等，帮助开发者提升AI应用能力 |
 
 ### 职责与产出
 
