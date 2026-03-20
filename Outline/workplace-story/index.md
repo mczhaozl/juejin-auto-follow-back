@@ -5,3 +5,7 @@
 - GitHub MCP（自动化代码审查与 Issue 管理）
 - Filesystem MCP（自动化文件处理与文档生成）
 - Slack MCP（团队协作与自动化通知）
+- Memory MCP（构建个人 AI 知识库）
+- Sentry MCP（智能化错误监控与告警）
+- Notion MCP（自动化文档管理与协作）
+- Brave Search MCP（智能化信息检索）
