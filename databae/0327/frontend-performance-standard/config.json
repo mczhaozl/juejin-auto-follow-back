@@ -1,0 +1,8 @@
+{
+    "categoryId": "6809637773935378440",
+    "tagIds": "6809640407484334093,6809640496040321060",
+    "publish": true,
+    "themeIds": "7509033842892603419",
+    "title": "前端性能度量新标准：CWV、LCP、INP 的深度调优与工程化实践",
+    "brief": "全面解析 Google Core Web Vitals (CWV) 的最新指标，分享在真实项目中提升 LCP 和 INP 的实战经验。"
+}
