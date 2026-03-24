@@ -1,0 +1,10 @@
+{
+  "title": "性能优化：如何通过 Web Workers 处理大批量数据计算以避免界面卡顿",
+  "brief": "JavaScript 是单线程的，这就意味着复杂的计算会阻塞 UI 渲染，导致用户感到卡顿。本文将分享如何利用 Web Workers 实现多线程并行计算，彻底告别复杂的算法对主线程的影响。",
+  "categoryId": "6809637767543259144",
+  "tagIds": "7211155452330475577,7211155452330475578,7192661555547635768",
+  "publish": true,
+  "themeIds": "7243698841848348730",
+  "columnIds": "",
+  "cover_image": "https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/1f1ecdf5fc1446439f2cadc340108b10~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714734&x-orig-sign=KQsWR03XLcBEZcfHJ%2B8v6eEiTGs%3D"
+}

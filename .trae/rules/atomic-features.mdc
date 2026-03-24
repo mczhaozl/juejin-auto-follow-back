@@ -1,0 +1,55 @@
+---
+description: 功能要原子化，方便复用与切割
+alwaysApply: true
+---
+
+# 功能原子化
+
+功能设计应遵循**原子化**原则：每个单元只做一件事、可独立复用、便于按需组合或拆分为更小模块。
+
+## 原则
+
+- **单一职责**：一个函数/脚本/工作流只完成一个明确目标，避免「顺带做多件事」。
+- **可独立复用**：逻辑不依赖隐式全局状态或强耦合调用方，可在其他场景直接复用。
+- **便于切割**：可按需求拆成更小步骤，或组合成更大流程，而不必大块重写。
+
+## 实践建议
+
+### 脚本与函数
+
+- 将「获取数据」「处理/过滤」「执行动作」「写日志」等拆成独立函数，由主流程组合调用。
+- 避免在一个函数里既请求 API 又解析又写库又发通知；拆成 `fetch_xxx()`、`parse_xxx()`、`notify_xxx()` 等。
+- 公共能力（如请求封装、重试、日志）抽到独立模块，供多个脚本复用。
+
+### 工作流与流水线
+
+- 每个 workflow/step 职责清晰（例如：只做回关、只做签到、只做日志归档）。
+- 可共用的步骤用 reusable workflow 或独立脚本封装，避免在多个 workflow 里复制同一段逻辑。
+- 新增能力时优先「加新原子」再「组合」，而不是在现有大流程里继续塞分支。
+
+### 配置与数据
+
+- 配置与业务逻辑分离，便于在不同环境/账号下复用同一套脚本。
+- 输入输出边界清晰（如通过参数/环境变量入参，通过返回值或文件输出），方便单独测试与替换。
+
+## 简单示例
+
+```python
+# ❌ 不好：一个函数包办多件事，难复用、难切割
+def do_follow_and_checkin():
+    cookies = os.environ["JUEJIN_COOKIES"]
+    # 拉粉丝、过滤、关注、签到、写日志全在一起...
+    ...
+
+# ✅ 更好：原子化后组合
+def fetch_new_followers(cookies: str) -> list: ...
+def filter_not_followed_back(followers: list) -> list: ...
+def follow_user(cookies: str, user_id: str) -> bool: ...
+def run_follow_back(cookies: str) -> dict:  # 组合上述原子
+    followers = fetch_new_followers(cookies)
+    to_follow = filter_not_followed_back(followers)
+    for u in to_follow: follow_user(cookies, u["id"])
+    return {"followed": len(to_follow)}
+```
+
+新增或重构功能时，先问：**能否拆成更小的、可单独复用的步骤？** 能则先拆再实现。

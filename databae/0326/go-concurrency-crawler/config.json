@@ -1,0 +1,10 @@
+{
+  "title": "Go 语言入门：从零开始构建一个高性能的并发 Web 爬虫",
+  "brief": "Go 语言天生适合高并发任务。本文将带你利用 Goroutine 和 Channel，从零开始实现一个高性能的 Web 爬虫，并学习如何优雅地处理并发限制与任务调度。",
+  "categoryId": "6809637767543259144",
+  "tagIds": "7211155452330475577,7211155452330475578,7192661555547635768",
+  "publish": true,
+  "themeIds": "7243698841848348730",
+  "columnIds": "",
+  "cover_image": "https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/16861372743f423aaa56ae54b045813a~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773715022&x-orig-sign=8a%2BSDLKEcDKGI0gC8t9wJPVL1EY%3D"
+}

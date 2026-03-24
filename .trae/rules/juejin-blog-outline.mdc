@@ -1,0 +1,12 @@
+---
+description: 掘金文章选题记录与续集规划；写作前后查阅/更新 Outline 下按大主题分类的已写记录
+alwaysApply: true
+---
+
+# 掘金文章 Outline 记录规范
+
+- **目录**：`Outline/` 下按**大主题**分文件夹，**文件夹名用英文**（如 `Css`、`javascript`、`reactApi`、`Vue`、`Node`、`Android`、`workplace-story`）。职场小故事类（介绍第三方工具或 API 易踩坑）使用 `Outline/workplace-story`。
+- **每个主题**：该主题下 `index.md` 记录该大主题下**已写过的选题**（标题或关键词，可选补充 databae 路径或日期），便于写续集或换主题时不重复。
+- **写作前**：若用户要写某主题（如 React、CSS、JavaScript），先查阅 `Outline/<主题>/index.md`，避免与已写选题重复；可据此推荐「未覆盖角度」或续集方向。
+- **写作后**：文章落盘（databae 或 posts）后，在对应大主题的 `Outline/<主题>/index.md` 中**追加一条**已写选题记录（如「- 标题或关键词」）。
+- 若该大主题尚无文件夹，可新建 `Outline/<英文主题名>/index.md` 并写入首条记录。格式见 `Outline/README.md`。

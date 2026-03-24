@@ -1,0 +1,10 @@
+{
+  "title": "TypeScript 进阶：如何优雅地处理深层嵌套对象的类型定义？",
+  "brief": "在处理大型 JSON 响应或复杂状态树时，深层嵌套对象的类型定义往往让人头疼。本文将分享几种高级技巧，教你如何利用 TypeScript 的模板字符串、映射类型和递归类型来优雅地搞定它们。",
+  "categoryId": "6809637767543259144",
+  "tagIds": "7211155452330475577,7211155452330475578,7192661555547635768",
+  "publish": true,
+  "themeIds": "7243698841848348730",
+  "columnIds": "7614802150373064747",
+  "cover_image": "https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cf5c06d519874467b70ce10feb045c29~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714634&x-orig-sign=CtPA2sVZ0CJV0cCrp4sO5%2Ffv1mk%3D"
+}

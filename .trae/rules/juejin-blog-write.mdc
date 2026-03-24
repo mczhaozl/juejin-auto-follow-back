@@ -1,0 +1,116 @@
+---
+description: 掘金文章默认万字、少量多次写入、单次最多 40 行；生成或编辑掘金/ databae 文章时遵守
+alwaysApply: true
+---
+
+# 掘金文章编写规范
+
+- **默认篇幅**：生成的掘金技术文章**默认为万字长文**（约 1 万中文字），除非用户明确要求短文、简要或指定字数。
+- **少量多次写入**：必须使用 **Write**、**StrReplace**、**fsAppend** 等工具通过多轮写入完成正文，**不得**一次性写入整篇长文。
+- **单次最多 40 行**：每一轮 `Write` / `StrReplace` / `fsAppend` 写入到同一文件的内容**不得超过 40 行**（按写入块的行数计）；超出时拆成多轮写入。
+- 适用场景：使用 juejin-blog 技能写文章、向 `databae/**` 或 `posts/**` 等落盘文章时，均须遵守上述篇幅与写入方式。
+
+## databae 文章格式规范
+
+### index.md 格式要求
+
+**必须包含 `---` 元数据分隔符**，结构如下：
+
+```markdown
+# 文章标题
+
+> 一句话摘要（50-100 字）
+
+---
+
+## 一、正文第一节
+正文内容...
+```
+
+- 第一个 `---` 位于「摘要」之后、「正文第一节」之前
+- 脚本通过 `---` 分隔元数据（标题+摘要）和正文
+- 如果没有 `---` 或 `---` 位置不正确，会导致解析失败、正文为空
+
+### config.json 格式要求
+
+```json
+{
+  "title": "文章主标题",
+  "brief": "一句话摘要，50-100 字符，超出会导致发布接口报错",
+  "categoryId": "分类 id",
+  "tagIds": "标签 id1,标签 id2",
+  "publish": true,
+  "themeIds": "话题 id（可选）",
+  "columnIds": "专栏 id（可选）",
+  "cover_image": "封面图 URL（可选）"
+}
+```
+
+- **brief 长度必须在 50-100 字符之间**，否则发布接口会报错
+- **必须包含 categoryId 和 tagIds**，否则会跳过上传
+- publish 默认为 true（立即发布），设为 false 可存草稿
+
+## 封面图 URL 表
+
+| 主题关键词 | cover_image URL |
+|------------|-----------------|
+| **React** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/453f4b76fdde4122899ad5904a9a7929~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773713426&x-orig-sign=sdA0cspKEwrPljgV6nKT3P20O4Y%3D` |
+| **AI**（大模型、AI 编程、人工智能等） | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/ec2c214fbfb042cdbfaed0520bd486ba~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714587&x-orig-sign=%2FDtZyDW3yP69PBAC4j2dMqJ0Kco%3D` |
+| **JavaScript** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cf5c06d519874467b70ce10feb045c29~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714634&x-orig-sign=CtPA2sVZ0CJV0cCrp4sO5%2Ffv1mk%3D` |
+| **webpack** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/1f1ecdf5fc1446439f2cadc340108b10~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714734&x-orig-sign=KQsWR03XLcBEZcfHJ%2B8v6eEiTGs%3D` |
+| **Vue** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/7ad6183f4f2d4a578d5b66d2dec3695e~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714760&x-orig-sign=%2B%2BHewSVlJoZLhlb614YQIKgAjMs%3D` |
+| **Java** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/16861372743f423aaa56ae54b045813a~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773715022&x-orig-sign=8a%2BSDLKEcDKGI0gC8t9wJPVL1EY%3D` |
+| **Android** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/8826c22c577648719d034e420d307f48~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773716394&x-orig-sign=mSoQqMseBqLuIaQrFhoEwDA02ug%3D` |
+| **微信公众号** | `https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/793ba6e2371b4a03a854f1cf81e8cee2~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773831533&x-orig-sign=7rY3DIOc97Rqbh9lgCt0IWglLW0%3D` |
+
+## 内容审核专家 (Content Review Expert)
+
+**目标**：在文章发布前进行内容审核，确保文章**严禁出现任何政治敏感内容或真实公司名称**，避免导致审核不通过或账号风险。
+
+### 审核红线（绝对禁止）
+
+| 类别 | 示例 | 说明 |
+|------|------|------|
+| **政治相关内容** | 「唐朝的三省六部制」「清朝的军机处」「某朝代的政治制度」 | 即使是历史朝代制度也禁止讨论 |
+| **真实公司名称** | 「我拿到了美团的 offer」「在字节跳动工作」「阿里云服务器」 | 任何真实公司名、产品名、团队名均禁止 |
+| **翻墙/梯子相关** | 「如何用梯子薅羊毛」「翻墙获取资源」「科学上网教程」 | 涉及翻墙工具或绕过网络限制的内容 |
+| **敏感人物/事件** | 任何现任/历史政治人物、敏感事件 | 一律禁止提及 |
+
+### 审核原则
+
+1. **脱敏原则**：如需举例，用「某业务」「某团队」「某大厂」「某互联网公司」等泛化表述
+2. **技术聚焦**：只讨论技术本身，不关联到具体公司、业务或产品
+3. **去人格化**：不提及真实人名、团队成员、具体同事
+4. **去地域化**：不提及具体地区、政策相关的内容
+
+### 审核检查清单
+
+发布或写入 databae 前，必须检查：
+
+- [ ] 文章标题和正文中**没有任何真实公司名称**（如：美团、字节、阿里、腾讯、百度、京东等）
+- [ ] 文章标题和正文中**没有任何政治相关内容**（包括历史朝代制度、现任/历史政治人物、敏感事件等）
+- [ ] 文章中**没有翻墙、梯子、科学上网**等相关内容
+- [ ] 如有案例或故事，已全部脱敏（用「某业务」「某团队」「同事 A」等泛化表述）
+- [ ] 没有提及任何真实产品名、项目名、内部系统名
+
+### 违规示例
+
+```markdown
+❌ 错误示例：
+- 我在美团工作，用他们的云服务部署了项目
+- 读了唐朝的三省六部制，我写了个多 Agent 架构
+- 如何用梯子薅 OpenAI token 羊毛
+- 我拿到了字节跳动的 offer
+
+✅ 正确示例：
+- 我在某互联网公司工作，用某云服务部署了项目
+- 读了古代的三省六部制度，我写了个多 Agent 架构
+- 如何低成本获取 API 资源
+- 我拿到了某大厂的 offer
+```
+
+### 审核流程
+
+1. **写作时**：内容专家/AI 变动专家在生成内容时主动规避红线
+2. **发布前**：发布专家/定时发布专家在执行发布前再次检查
+3. **审核失败处理**：如发现违规内容，**拒绝发布**，要求修改后再试

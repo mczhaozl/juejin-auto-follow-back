@@ -1,0 +1,10 @@
+{
+  "title": "TypeScript 进阶：如何利用 Template Literal Types 构建类型安全的路由系统",
+  "brief": "在使用 React Router 或 Next.js 等路由系统时，手写路径字符串往往是 Bug 的温床。本文将分享如何利用 TypeScript 的模板字符串类型，实现一个全自动推导路径参数、类型安全的路由方案。",
+  "categoryId": "6809637767543259144",
+  "tagIds": "7211155452330475577,7211155452330475578,7192661555547635768",
+  "publish": true,
+  "themeIds": "7243698841848348730",
+  "columnIds": "7614802150373064747",
+  "cover_image": "https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cf5c06d519874467b70ce10feb045c29~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714634&x-orig-sign=CtPA2sVZ0CJV0cCrp4sO5%2Ffv1mk%3D"
+}

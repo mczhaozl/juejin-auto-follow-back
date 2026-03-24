@@ -9,3 +9,5 @@
 - Sentry MCP（智能化错误监控与告警）
 - Notion MCP（自动化文档管理与协作）
 - Brave Search MCP（智能化信息检索）
+- .gitignore Security（那个因为没写 .gitignore 而泄露密钥的下午）
+- Cloud Cost Security（那个因为没关云服务器而欠费上千元的周末）
