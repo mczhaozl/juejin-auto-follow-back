@@ -152,8 +152,11 @@ async function runAccount(name, cookie, articleIds) {
                 console.log(`  [${i + 1}/${articleIds.length}] ⏭️  ${id} (已赞或重复)`);
             } else {
                 console.log(`  [${i + 1}/${articleIds.length}] ❌ ${id} 操作失败:`, data);
-                console.log(`  🛑 [${name}] 一旦失败，停止该账号后续点赞操作。`);
-                return { okCount, skipCount, failed: true };
+                if (data.err_no === 4032) {
+                    console.log(`  🛑 [${name}] 触发 4032 (未绑定手机号)，停止该账号后续点赞操作。`);
+                    return { okCount, skipCount, failed: true };
+                }
+                console.log(`  ⚠️  [${name}] 非 4032 错误，继续尝试后续文章。`);
             }
         }
         if (i < articleIds.length - 1) await sleep(DELAY_MS);
