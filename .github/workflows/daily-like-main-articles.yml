@@ -1,0 +1,35 @@
+name: 每日点赞大号文章
+
+on:
+  schedule:
+    # 每天早上 8:30 北京时间 = 当天 0:30 UTC
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  like:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安装 axios
+        run: npm install axios
+
+      - name: 执行点赞脚本
+        run: node scripts/daily_like_main_articles.js
+        env:
+          JUEJIN_COOKIES: ${{ secrets.JUEJIN_COOKIES }}
+          JUEJIN_COOKIES_ACCOUNT2: ${{ secrets.JUEJIN_COOKIES_ACCOUNT2 }}
+          JUEJIN_COOKIES_ACCOUNT3: ${{ secrets.JUEJIN_COOKIES_ACCOUNT3 }}
+          JUEJIN_COOKIES_ACCOUNT4: ${{ secrets.JUEJIN_COOKIES_ACCOUNT4 }}
+          JUEJIN_COOKIES_ACCOUNT5: ${{ secrets.JUEJIN_COOKIES_ACCOUNT5 }}
+          JUEJIN_COOKIES_ACCOUNT6: ${{ secrets.JUEJIN_COOKIES_ACCOUNT6 }}
+          JUEJIN_COOKIES_ACCOUNT7: ${{ secrets.JUEJIN_COOKIES_ACCOUNT7 }}
+          JUEJIN_COOKIES_ACCOUNT8: ${{ secrets.JUEJIN_COOKIES_ACCOUNT8 }}
+          JUEJIN_COOKIES_ACCOUNT9: ${{ secrets.JUEJIN_COOKIES_ACCOUNT9 }}
