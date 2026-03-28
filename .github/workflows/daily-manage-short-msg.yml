@@ -1,0 +1,28 @@
+name: 每日管理沸点（评论后删除）
+
+on:
+  schedule:
+    # 北京时间 12:00 (cron 12:00 CST = 04:00 UTC)
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  manage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安装依赖
+        run: npm install axios
+
+      - name: 执行沸点管理脚本
+        run: node scripts/daily_manage_short_msg.js
+        env:
+          JUEJIN_COOKIES: ${{ secrets.JUEJIN_COOKIES }}
+          JUEJIN_USER_ID: '994385683293918' # 这里可以硬编码，也可以从 secrets 获取
