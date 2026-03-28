@@ -1,0 +1,8 @@
+﻿{
+    "categoryId":  "6809637773935378440",
+    "publish":  true,
+    "tagIds":  "6809640407484334093,6809640496040321060",
+    "themeIds":  "7509033842892603419",
+    "brief":  "探讨新一代超轻量 Web 框架 Hono，实战如何利用 Cloudflare Workers 全球边缘网络，打造毫秒级响应的 API 服务。",
+    "title":  "Hono + Cloudflare Workers：构建极速边缘函数应用"
+}

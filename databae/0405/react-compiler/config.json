@@ -1,0 +1,8 @@
+﻿{
+    "categoryId":  "6809637773935378440",
+    "publish":  true,
+    "tagIds":  "6809640407484334093,6809640496040321060",
+    "themeIds":  "7509033842892603419",
+    "brief":  "解析 React 团队最新编译器 React Forget，实战如何告别手动 useMemo/useCallback，实现更智能的性能优化。",
+    "title":  "React Compiler (React Forget)：深入理解自动记忆化原理"
+}

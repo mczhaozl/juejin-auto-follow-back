@@ -1,0 +1,8 @@
+﻿{
+    "categoryId":  "6809637773935378440",
+    "publish":  true,
+    "tagIds":  "6809640407484334093,6809640496040321060",
+    "themeIds":  "7509033842892603419",
+    "brief":  "实战如何利用 Partytown 优化 TBT (Total Blocking Time)，将繁重的第三方分析与统计脚本移出主线程。",
+    "title":  "Partytown 实战：将第三方脚本移至 Web Worker 提升性能"
+}
