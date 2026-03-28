@@ -25,4 +25,6 @@ jobs:
         run: node scripts/daily_manage_short_msg.js
         env:
           JUEJIN_COOKIES: ${{ secrets.JUEJIN_COOKIES }}
-          JUEJIN_USER_ID: '994385683293918' # 这里可以硬编码，也可以从 secrets 获取
+          JUEJIN_USER_ID: '994385683293918'
+          JUEJIN_CSRF_TOKEN: ${{ secrets.JUEJIN_CSRF_TOKEN }}
+          JUEJIN_A_BOGUS: ${{ secrets.JUEJIN_A_BOGUS }}

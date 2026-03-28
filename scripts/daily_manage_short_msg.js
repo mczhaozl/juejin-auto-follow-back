@@ -116,7 +116,7 @@ async function queryMyShortMsgs(cookie, userId, limit = 5) {
 /**
  * 原子化：对指定沸点发表评论
  */
-async function publishComment(msgId, content, cookie, msToken) {
+async function publishComment(msgId, content, cookie, msToken, aBogus, csrfToken) {
     const url = `${API_BASE}/interact_api/v1/comment/publish`;
     const payload = {
         client_type: Number(AID),
@@ -125,21 +125,38 @@ async function publishComment(msgId, content, cookie, msToken) {
         comment_content: content,
         comment_pics: []
     };
+    const params = { 
+        aid: AID, 
+        uuid: extractUuid(cookie), 
+        spider: SPIDER
+    };
+    if (msToken) {
+        params.msToken = decodeURIComponent(msToken);
+    }
+    if (aBogus) {
+        params.a_bogus = aBogus;
+    }
+    const headers = {
+        'accept': '*/*',
+        'accept-language': 'zh-CN,zh;q=0.9',
+        'content-type': 'application/json',
+        'origin': 'https://juejin.cn',
+        'referer': 'https://juejin.cn/',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36',
+        'Cookie': cookie
+    };
+    if (csrfToken) {
+        headers['x-secsdk-csrf-token'] = csrfToken;
+    }
     try {
         const { data } = await axios.post(url, payload, {
-            params: { aid: AID, uuid: extractUuid(cookie), spider: SPIDER, msToken },
-            headers: {
-                'accept': '*/*',
-                'content-type': 'application/json',
-                'origin': 'https://juejin.cn',
-                'referer': 'https://juejin.cn/',
-                'Cookie': cookie
-            },
-            timeout: 15000
+            params,
+            headers,
+            timeout: 15000,
+            validateStatus: () => true
         });
         return { success: data && data.err_no === 0, data };
     } catch (e) {
-        console.log(e)
         return { success: false, error: e.message };
     }
 }
@@ -160,9 +177,11 @@ async function deleteShortMsg(msgId, cookie) {
                 'content-type': 'application/json',
                 'origin': 'https://juejin.cn',
                 'referer': 'https://juejin.cn/',
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36',
                 'Cookie': cookie
             },
-            timeout: 15000
+            timeout: 15000,
+            validateStatus: () => true
         });
         return { success: data && data.err_no === 0, data };
     } catch (e) {
@@ -173,7 +192,7 @@ async function deleteShortMsg(msgId, cookie) {
 /**
  * 整合逻辑
  */
-async function processShortMsgs(cookie, userId) {
+async function processShortMsgs(cookie, userId, csrfToken, aBogus) {
     console.log(`🚀 [${userId}] 开始处理沸点...`);
     const sanitizedCookie = sanitizeCookieHeader(cookie);
     
@@ -188,17 +207,20 @@ async function processShortMsgs(cookie, userId) {
     for (let i = 0; i < msgIds.length; i++) {
         const msgId = msgIds[i];
         
-        // 2. 临时获取 msToken (每次操作前获取或共用，此处为演示临时获取)
+        // 2. 临时获取 msToken
         const msToken = await refreshMsTokenFromMssdk(sanitizedCookie);
+        if (!msToken) {
+            console.log(`  ⚠️  获取 msToken 失败，尝试直接评论`);
+        }
         
         // 3. 评论
         console.log(`  [${i + 1}/${msgIds.length}] 正在评论 ${msgId}...`);
-        const commentRes = await publishComment(msgId, "打卡下班", sanitizedCookie, msToken);
-        console.log(commentRes)
+        const commentRes = await publishComment(msgId, "打卡下班", sanitizedCookie, msToken, aBogus, csrfToken);
+        
         if (commentRes.success) {
             console.log(`    ✅ 评论成功`);
         } else {
-            console.log(`    ❌ 评论失败:`, commentRes.data || commentRes.error);
+            console.log(`    ❌ 评论失败:`, JSON.stringify(commentRes.data || commentRes.error));
         }
 
         // 4. 删除
@@ -207,7 +229,7 @@ async function processShortMsgs(cookie, userId) {
         if (deleteRes.success) {
             console.log(`    ✅ 删除成功`);
         } else {
-            console.log(`    ❌ 删除失败:`, deleteRes.data || deleteRes.error);
+            console.log(`    ❌ 删除失败:`, JSON.stringify(deleteRes.data || deleteRes.error));
         }
 
         if (i < msgIds.length - 1) await sleep(DELAY_MS);
@@ -221,10 +243,11 @@ async function main() {
         process.exit(1);
     }
     
-    // 如果没有配置 USER_ID，默认使用脚本内定义的 ID
     const userId = process.env.JUEJIN_USER_ID || DEFAULT_MAIN_USER_ID;
+    const csrfToken = process.env.JUEJIN_CSRF_TOKEN || '';
+    const aBogus = process.env.JUEJIN_A_BOGUS || '';
     
-    await processShortMsgs(cookie, userId);
+    await processShortMsgs(cookie, userId, csrfToken, aBogus);
     console.log("\n🏁 沸点处理任务结束。");
 }
 

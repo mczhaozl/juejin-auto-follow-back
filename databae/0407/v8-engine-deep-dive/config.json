@@ -1,0 +1,9 @@
+{
+  "title": "深入理解V8引擎：JavaScript执行机制与性能优化底层原理",
+  "brief": "从编译器角度深度解析V8引擎的工作原理，包括 JIT 编译、垃圾回收机制与内存管理，助你写出更高性能的JavaScript代码。",
+  "categoryId": "6809637767543259144",
+  "tagIds": "6809640407484334093,6809643261347630094,6809643261978296333",
+  "publish": true,
+  "themeIds": "7243698841848348730",
+  "cover_image": "https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cf5c06d519874467b70ce10feb045c29~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5YWG5a2Q6b6Z:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiOTk0Mzg1NjgzMjkzOTE4In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1773714634&x-orig-sign=CtPA2sVZ0CJV0cCrp4sO5%2Ffv1mk%3D"
+}
