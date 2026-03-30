@@ -135,7 +135,7 @@ def collect_today_articles():
         if not config_path.is_file() or not index_path.is_file():
             continue
         try:
-            config = json.loads(config_path.read_text(encoding="utf-8"))
+            config = json.loads(config_path.read_text(encoding="utf-8-sig"))
         except Exception as e:
             print(f"⚠️ 跳过 {sub.name}: config.json 解析失败 {e}")
             continue
