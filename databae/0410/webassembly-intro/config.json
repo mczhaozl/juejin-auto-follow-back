@@ -1,0 +1,8 @@
+{
+  "title": "WebAssembly 入门指南：高性能 Web 开发",
+  "brief": "全面介绍 WebAssembly 技术，包括 Rust/C++ 编译为 WASM、在 JavaScript 中调用，以及实际性能优化案例。",
+  "categoryId": "6809637773935378440",
+  "tagIds": "6809640407484334093,6809643261978296333,6809640503697727489",
+  "publish": true,
+  "themeIds": "7243698841848348730"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "GraphQL 完全指南：API 查询语言与实践",
+  "brief": "深入讲解 GraphQL，包括 Schema 定义、查询语法、Mutations、Subscriptions，以及 Apollo Server/Client 的实际应用和性能优化。",
+  "categoryId": "6809637773935378440",
+  "tagIds": "6809640407484334093,6809640503697727489,6809643261978296333",
+  "publish": true,
+  "themeIds": "7243698841848348730"
+}

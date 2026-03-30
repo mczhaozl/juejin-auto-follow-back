@@ -1,0 +1,8 @@
+{
+  "title": "Kafka 与流处理完全指南：消息队列实战",
+  "brief": "深入讲解 Kafka 和流处理，包括 Topic、Partition、Consumer Group、Offset 管理，以及 Streams API 和实际项目中的消息队列架构。",
+  "categoryId": "6809637773935378440",
+  "tagIds": "6809640407484334093,6809640503697727489,6809643261978296333",
+  "publish": true,
+  "themeIds": "7243698841848348730"
+}

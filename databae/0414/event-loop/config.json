@@ -1,0 +1,8 @@
+{
+  "title": "JavaScript Event Loop 完全指南：执行机制深度解析",
+  "brief": "深入讲解 JavaScript Event Loop，包括调用栈、微任务、宏任务，以及 Node.js 和浏览器环境的事件循环机制区别。",
+  "categoryId": "6809637773935378440",
+  "tagIds": "6809640407484334093,6809643261407618049,6809640501776482317",
+  "publish": true,
+  "themeIds": "7243698841848348730"
+}

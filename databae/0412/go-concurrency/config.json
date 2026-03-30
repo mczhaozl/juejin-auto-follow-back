@@ -1,0 +1,8 @@
+{
+  "title": "Go 并发编程完全指南：Goroutine 与Mutex",
+  "brief": "深入讲解 Go 并发编程，包括 Goroutine、Channel、WaitGroup、Mutex，以及并发安全和实际项目中的并发模式。",
+  "categoryId": "6809637773935378440",
+  "tagIds": "6809640407484334093,6809643261978296333,6809643261407618049",
+  "publish": true,
+  "themeIds": "7243698841848348730"
+}
