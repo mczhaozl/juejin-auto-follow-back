@@ -7,3 +7,4 @@
 - 手把手教你实现webpack核心功能（四）：构建依赖图与代码生成
 - 手把手教你实现webpack核心功能（五）：实现Plugin系统与完整打包流程
 - Module Federation（利用 Module Federation 实现微前端架构的模块共享）
+- webpack-asset-modules（Webpack Asset Modules演进）
