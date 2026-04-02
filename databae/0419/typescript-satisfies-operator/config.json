@@ -1,0 +1,8 @@
+{
+  "title": "TypeScript satisfies 操作符完全指南",
+  "brief": "深入解析 TypeScript 4.9 引入的 satisfies 操作符，掌握如何同时获得类型推断和类型验证，提升你的 TypeScript 代码质量。",
+  "categoryId": "6809637773935378440",
+  "tagIds": "6809635628680600599,6809645636808253453,6809641806776901636",
+  "publish": true,
+  "themeIds": "7243698841848348730"
+}

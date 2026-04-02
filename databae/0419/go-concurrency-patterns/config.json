@@ -1,0 +1,8 @@
+{
+  "title": "Go 并发模式完全指南：channel、context 与模式实践",
+  "brief": "深入解析 Go 语言并发编程的核心概念，涵盖 Goroutine、Channel、Context、Select 及常用并发模式，学习如何编写高效、安全的并发代码。",
+  "categoryId": "6809637773935378440",
+  "tagIds": "6809640629959680017,6809645664031758350,6809640176537763844",
+  "publish": true,
+  "themeIds": "7243698841848348730"
+}

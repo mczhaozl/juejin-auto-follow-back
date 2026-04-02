@@ -4,7 +4,7 @@
 - Container Queries（2026 年你必须掌握的 CSS Container Queries 实践指南）
 - Grid Masonry（利用 CSS Grid 布局实现复杂的瀑布流设计）
 - CSS Variables（2026 年 CSS 变量高级技巧：动态主题、复杂布局与响应式计算的终极方案）
-- （暂无记录，写后在此追加）
+- css-houdini-paint-api（CSS Houdini Paint API 完全指南：开启 CSS 渲染的新纪元）
 - css-vars-2026（2026年CSS变量高级技巧）
 - container-queries-2026（2026年Container Queries实践指南）
 - grid-masonry-layout（CSS Grid瀑布流设计）
