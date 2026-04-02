@@ -67,8 +67,8 @@ class JuejinCheckIn:
     def check_in(self):
         """执行签到"""
         # 写死 msToken 和 a_bogus（如果过期需要更新）
-        ms_token = 'IYhGRZKoGipxhcj4c5GKnhHWKPj1yqEjIvJ1EKmI_tRq6XFGXsmjd-V4MMRpuQ5i08uzFrRCnO57deSG40u1tWOTAfGemIF4-fUTCQfCpxD70EtBEKkdZUtQIbGB1wLD'
-        a_bogus = 'D7UdkOZVMsm1MX3rB7Dz9JSEqxu0YWRLgZENEkRC60on'
+        ms_token = 'HMFL197REazVGre9WfYFrDpsej8qhfus3QCsRLTLaKHjujQ7s2jcIzQcKZ6VLCESZ5K96qR7FOFtRBlcj4pkXkU9X26Irn-CeiGDw_T5V3Y4L9vcCZE2gC1guDHEy59nNg%3D%3D'
+        a_bogus = 'EjsQhcZ6Msm1VhV1mhDz9tWEsrm0YW-rgZENiiLqAtLK'
         
         url = f"{self.base_url}/growth_api/v1/check_in"
         params = {
