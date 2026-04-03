@@ -1,6 +1,8 @@
 {
-  "title": "TypeScript 装饰器完全指南：从基础到高级应用",
-  "tags": ["TypeScript", "装饰器", "Decorators", "元编程", "JavaScript"],
-  "category": "frontend",
-  "publishDate": "2024-04-23"
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809640445233070094,6809640398105870343",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "title": "TypeScript 装饰器完全指南：从基础到高级应用",
+    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
 }

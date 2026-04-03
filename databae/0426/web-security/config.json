@@ -1,6 +1,8 @@
 {
-  "title": "Web 安全完全指南",
-  "tags": ["Web安全", "XSS", "SQL注入", "CSRF", "前端"],
-  "category": "security",
-  "publishDate": "2024-04-26"
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809640445233070094,6809640398105870343",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "title": "Web 安全完全指南",
+    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
 }

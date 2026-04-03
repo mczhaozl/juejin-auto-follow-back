@@ -1,6 +1,8 @@
 {
-  "title": "TypeScript 5.x 新特性完全指南：从 5.0 到 5.4 的重大改进",
-  "tags": ["TypeScript", "JavaScript", "类型系统", "装饰器", "前端"],
-  "category": "frontend",
-  "publishDate": "2024-04-24"
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809640445233070094,6809640398105870343",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "title": "TypeScript 5.x 新特性完全指南：从 5.0 到 5.4 的重大改进",
+    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
 }

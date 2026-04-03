@@ -1,7 +1,8 @@
 {
-  "title": "Go 错误处理完全指南：最佳实践与高级技巧",
-  "tags": ["Go", "错误处理", "后端", "Golang"],
-  "category": "后端开发",
-  "summary": "全面掌握 Go 的错误处理机制，包括 error 接口、自定义错误、错误包装、defer/panic/recover、错误处理模式、最佳实践等。",
-  "cover_image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Go%20language%20logo%20with%20error%20handling%20flow%20chart&image_size=landscape_16_9"
+    "categoryId": "6809637769959178254",
+    "tagIds": "6809640445233070094,6809640398105870343",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "title": "Go 错误处理完全指南：最佳实践与高级技巧",
+    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
 }

@@ -1,6 +1,8 @@
 {
-  "title": "Git 高级工作流完全指南：从基础到企业级实践",
-  "tags": ["Git", "版本控制", "Git Flow", "GitHub Flow", "DevOps"],
-  "category": "devops",
-  "publishDate": "2024-04-23"
+    "categoryId": "6809637769959178254",
+    "tagIds": "6809640445233070094,6809640398105870343",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "title": "Git 高级工作流完全指南：从团队协作到最佳实践",
+    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
 }

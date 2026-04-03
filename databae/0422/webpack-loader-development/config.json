@@ -1,7 +1,8 @@
 {
-  "title": "Webpack Loader 开发完全指南：从原理到实战",
-  "tags": ["Webpack", "Loader", "前端工程化", "构建工具"],
-  "category": "前端开发",
-  "summary": "从零开始学习 Webpack Loader 开发，包括 Loader API、同步/异步 Loader、Pitch Loader、实战案例（Markdown Loader、CSS Modules Loader）等。",
-  "cover_image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Webpack%20logo%20with%20loader%20conveyor%20belt%20visualization&image_size=landscape_16_9"
+    "categoryId": "6809637767543259144",
+    "tagIds": "6809640445233070094,6809640398105870343",
+    "publish": true,
+    "themeIds": "7243698841848348730",
+    "title": "Webpack Loader 开发完全指南：从原理到实战",
+    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
 }
