@@ -9,3 +9,6 @@
 - Module Federation（利用 Module Federation 实现微前端架构的模块共享）
 - webpack-asset-modules（Webpack Asset Modules演进）
 - turborepo-monorepo-master（Turborepo 完全指南：现代化 Monorepo 管理利器）
+- vite-5x-new-features（Vite 5.x 新特性完全指南）
+- pnpm-vs-yarn-npm（PNPM vs Yarn vs npm：JavaScript 包管理器全面对比）
+- webpack-loader-development（Webpack Loader 开发完全指南）

@@ -5,3 +5,6 @@
 - Template Literal Routes（利用模板字符串类型构建类型安全的路由系统）
 - ts-template-literal（TypeScript模板字符串类型实战）
 - typescript-satisfies（TypeScript satisfies 操作符完全指南）
+- typescript-type-gymnastics（TypeScript 类型体操完全指南）
+- typescript-decorators（TypeScript 装饰器完全指南）
+- typescript-5-features（TypeScript 5.x 高级特性完全指南）

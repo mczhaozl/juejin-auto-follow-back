@@ -1,0 +1,7 @@
+{
+  "title": "TypeScript 类型体操完全指南：从基础到高级技巧",
+  "tags": ["TypeScript", "类型体操", "前端", "JavaScript"],
+  "category": "前端开发",
+  "summary": "本文全面介绍 TypeScript 类型体操，包括内置工具类型、条件类型、映射类型、模板字面量类型、递归类型等，并有大量实战案例。",
+  "cover_image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=TypeScript%20code%20editor%20with%20type%20system%20visualization&image_size=landscape_16_9"
+}

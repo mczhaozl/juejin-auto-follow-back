@@ -12,3 +12,5 @@
 - chrome-devtools-protocol（Chrome DevTools Protocol自动化）
 - .gitignore Security（那个因为没写 .gitignore 而泄露密钥的下午）
 - Cloud Cost Security（那个因为没关云服务器而欠费上千元的周末）
+- workplace-git-branching（那个因为 Git 分支管理混乱而加班到凌晨的周五晚上）
+- workplace-api-design（那个因为 API 设计混乱而导致线上事故的周一）

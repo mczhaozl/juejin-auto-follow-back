@@ -1,0 +1,6 @@
+{
+  "title": "Go 并发编程深度解析：从 Goroutine 到 Channel",
+  "tags": ["Go", "Golang", "并发编程", "Goroutine", "Channel"],
+  "category": "backend",
+  "publishDate": "2024-04-25"
+}

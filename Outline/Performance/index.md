@@ -4,3 +4,6 @@
 - web-vitals-core-web-vitals（Core Web Vitals 完全指南：前端性能度量新标准）
 - Web Workers（通过 Web Workers 处理大批量数据计算以避免界面卡顿）
 - web-security-https（HTTPS与Web安全基础）
+- web-security-basics（Web 安全基础：XSS、CSRF、SQL注入与防护完全指南）
+- performance-optimization（Web 性能优化完全实战指南）
+- frontend-performance（前端性能优化完全指南）

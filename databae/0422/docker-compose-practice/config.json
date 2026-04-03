@@ -1,0 +1,7 @@
+{
+  "title": "Docker Compose 实战完全指南：从开发到生产环境",
+  "tags": ["Docker", "Docker Compose", "DevOps", "容器化"],
+  "category": "DevOps",
+  "summary": "从零到实战掌握 Docker Compose，包括基础命令、docker-compose.yml 配置、完整 Web 应用栈、开发环境配置、多环境管理、最佳实践等。",
+  "cover_image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Docker%20whale%20logo%20with%20multiple%20containers%20orchestration&image_size=landscape_16_9"
+}
