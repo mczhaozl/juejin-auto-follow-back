@@ -12,3 +12,5 @@
 - vite-5x-new-features（Vite 5.x 新特性完全指南）
 - pnpm-vs-yarn-npm（PNPM vs Yarn vs npm：JavaScript 包管理器全面对比）
 - webpack-loader-development（Webpack Loader 开发完全指南）
+- webpack-tree-shaking（Webpack Tree Shaking 深度解析：从原理到实战优化）
+- vite-plugin-development（Vite Plugin 开发完全指南）

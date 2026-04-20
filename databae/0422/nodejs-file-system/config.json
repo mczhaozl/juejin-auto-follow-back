@@ -1,8 +1,7 @@
 {
-    "categoryId": "6809637769959178254",
-    "tagIds": "6809640445233070094,6809640398105870343",
-    "publish": true,
-    "themeIds": "7243698841848348730",
-    "title": "Node.js 文件系统与流处理完全指南：从基础到高性能",
-    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
+  "title": "Node.js 文件系统与流处理完全指南：从基础到高性能",
+  "tags": ["Node.js", "文件系统", "Stream", "后端"],
+  "category": "后端开发",
+  "summary": "全面掌握 Node.js fs 模块和流处理，包括同步/异步 API、可读/可写/转换流、管道、实战案例（大文件处理、日志分析、CSV 解析）、性能优化等。",
+  "cover_image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Node.js%20logo%20with%20file%20stream%20pipeline%20visualization&image_size=landscape_16_9"
 }

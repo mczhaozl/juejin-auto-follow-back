@@ -1,8 +1,7 @@
 {
-    "categoryId": "6809637776263217160",
-    "tagIds": "6809640445233070094,6809640398105870343",
-    "publish": true,
-    "themeIds": "7243698841848348730",
-    "title": "那个因为 API 设计混乱而导致线上事故的周一",
-    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
+  "title": "那个因为 API 设计混乱而导致线上事故的周一",
+  "tags": ["API", "架构设计", "职场故事", "后端"],
+  "category": "职场与成长",
+  "summary": "一个关于 API 设计的真实职场故事，从线上事故复盘开始，讲解 RESTful API 设计规范、响应格式、版本管理、文档自动化等最佳实践。",
+  "cover_image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=API%20design%20flowchart%20with%20error%20alert%20visualization&image_size=landscape_16_9"
 }

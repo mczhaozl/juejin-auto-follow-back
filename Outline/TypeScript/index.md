@@ -8,3 +8,4 @@
 - typescript-type-gymnastics（TypeScript 类型体操完全指南）
 - typescript-decorators（TypeScript 装饰器完全指南）
 - typescript-5-features（TypeScript 5.x 高级特性完全指南）
+- typescript-type-gymnastics-advanced（TypeScript 类型体操高级技巧完全指南）

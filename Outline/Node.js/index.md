@@ -2,3 +2,4 @@
 
 - nodejs-file-system（Node.js 文件系统与流处理完全指南）
 - nodejs-performance（Node.js 性能调优完全实战指南）
+- nodejs-worker-threads（Node.js Worker Threads 深度实战指南）

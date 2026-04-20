@@ -1,8 +1,6 @@
 {
-    "categoryId": "6809637769959178254",
-    "tagIds": "6809640445233070094,6809640398105870343",
-    "publish": true,
-    "themeIds": "7243698841848348730",
-    "title": "网络协议完全指南：从 TCP/IP 到 HTTP/3",
-    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
+  "title": "网络协议完全指南：从 TCP/IP 到 HTTP/3",
+  "tags": ["网络", "TCP/IP", "HTTP", "DNS", "WebSocket"],
+  "category": "backend",
+  "publishDate": "2024-04-26"
 }

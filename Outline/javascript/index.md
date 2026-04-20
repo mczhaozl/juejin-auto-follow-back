@@ -12,3 +12,5 @@
 - weakmap-weakset（WeakMap与WeakSet高级特性）
 - js-proxy-reflect（深入理解JavaScript Proxy与Reflect）
 - nodejs-event-loop（Node.js事件循环深度解析）
+- js-generator-async（JavaScript Generator 与异步编程深度解析）
+- js-decorators-deep（JavaScript Decorators 深度解析与实战）

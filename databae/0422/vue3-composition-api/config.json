@@ -1,8 +1,7 @@
 {
-    "categoryId": "6809637767543259144",
-    "tagIds": "6809640445233070094,6809640398105870343",
-    "publish": true,
-    "themeIds": "7243698841848348730",
-    "title": "Vue 3 组合式 API 完全指南：从基础到实战",
-    "brief": "从原理到实战，掌握核心特性与最佳实践，阅读即可上手实践。"
+  "title": "Vue 3 组合式 API 完全指南：从基础到实战",
+  "tags": ["Vue", "Vue3", "组合式 API", "前端"],
+  "category": "前端开发",
+  "summary": "全面掌握 Vue 3 组合式 API，包括 ref/reactive、计算属性、侦听器、生命周期、组合式函数（Composables）、Script Setup 语法糖等。",
+  "cover_image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Vue%203%20logo%20with%20composition%20API%20visualization&image_size=landscape_16_9"
 }

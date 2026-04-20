@@ -12,3 +12,5 @@
 - grid-masonry-layout（CSS Grid瀑布流设计）
 - css-vars-advanced（CSS 变量高级技巧：动态主题、复杂布局与响应式计算）
 - tailwind-css-advanced（Tailwind CSS 高级技巧完全指南）
+- css-grid-complete（CSS Grid 完全指南：从基础到高级复杂布局）
+- css-animation-performance（CSS 动画性能优化完全指南）
