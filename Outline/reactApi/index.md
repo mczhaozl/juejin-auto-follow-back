@@ -8,3 +8,7 @@
 - react-19-features（React 19 新特性完全指南）
 - react-context-performance（React Context 性能优化完全指南）
 - react-suspense-deep（React Suspense 深度解析与实战）
+- react-component-patterns（React 组件设计模式完全指南：从基础到高级）
+- react-performance-optimization（React 性能优化完全指南：从原理到实战技巧）
+- react-server-actions（React Server Actions 完全指南）
+- react-remix（Remix 框架深度实战指南）

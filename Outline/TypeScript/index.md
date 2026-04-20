@@ -9,3 +9,16 @@
 - typescript-decorators（TypeScript 装饰器完全指南）
 - typescript-5-features（TypeScript 5.x 高级特性完全指南）
 - typescript-type-gymnastics-advanced（TypeScript 类型体操高级技巧完全指南）
+- typescript-decorators-advanced（TypeScript 装饰器高级实战完全指南：从基础到企业级）
+- typescript-type-gymnastics-ultimate（TypeScript 高级类型体操完全指南：从基础到黑魔法）
+- typescript-eslint（TypeScript ESLint 配置与自定义规则完全指南）
+- typescript-bun（Bun + TypeScript 开发完全指南）
+- typescript-zod（TypeScript Zod 数据验证完全指南）
+- typescript-type-challenges（TypeScript Type Challenges 完全指南）
+- typescript-compiler-api（TypeScript Compiler API 完全指南）
+- typescript-type-level-programming（TypeScript 类型级编程完全指南）
+- typescript-abstract-types（TypeScript 抽象类型完全指南）
+- typescript-type-safe-routing（TypeScript 类型安全路由完全指南）
+- typescript-type-predicates（TypeScript 类型守卫完全指南）
+- typescript-branded-types（TypeScript Branded Types 完全指南）
+- typescript-module-augmentation（TypeScript 模块扩充完全指南）

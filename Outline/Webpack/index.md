@@ -14,3 +14,5 @@
 - webpack-loader-development（Webpack Loader 开发完全指南）
 - webpack-tree-shaking（Webpack Tree Shaking 深度解析：从原理到实战优化）
 - vite-plugin-development（Vite Plugin 开发完全指南）
+- webpack-performance-optimization（Webpack 构建性能优化完全指南：从基础到企业级）
+- vite-performance-optimization（Vite 性能优化完全指南：从开发到生产优化）

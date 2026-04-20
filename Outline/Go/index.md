@@ -6,3 +6,16 @@
 - go-pointers-references（Go 指针与引用完全指南）
 - go-error-handling（Go 错误处理完全指南）
 - go-concurrency（Go 并发编程深度解析）
+- go-reflection-metaprogramming（Go 反射与元编程完全指南：从基础到实战）
+- go-concurrency-advanced（Go 并发进阶与高级模式完全指南：从原理到实战）
+- go-grpc（Go gRPC 完全指南）
+- go-kubernetes-operator（Go Kubernetes Operator 完全指南）
+- go-terraform（Go & Terraform 基础设施即代码完全指南）
+- go-generics（Go 泛型完全指南）
+- go-cgo（Go CGo 完全指南）
+- go-web-frameworks（Go Web 框架完全指南）
+- go-cobra（Go Cobra CLI 完全指南）
+- go-context（Go Context 完全指南）
+- go-sync-pool（Go sync.Pool 完全指南）
+- go-unsafe（Go unsafe 完全指南）
+- go-benchmark（Go 基准测试完全指南）

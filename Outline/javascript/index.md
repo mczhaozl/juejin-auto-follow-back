@@ -14,3 +14,6 @@
 - nodejs-event-loop（Node.js事件循环深度解析）
 - js-generator-async（JavaScript Generator 与异步编程深度解析）
 - js-decorators-deep（JavaScript Decorators 深度解析与实战）
+- javascript-memory-management（JavaScript 内存管理与性能优化完全指南：从原理到实战）
+- javascript-performance-optimization（JavaScript 性能优化完全指南：从原理到实战技巧）
+- javascript-webassembly（JavaScript + WebAssembly 性能优化完全指南）
